@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Represents a user in the system.
+ */
 public class User {
     private String username;
     private String password;
@@ -9,6 +12,17 @@ public class User {
     private String gender;
     private String personID;
 
+    /**
+     * Constructs a User object with the specified attributes.
+     *
+     * @param username  the username of the user
+     * @param password  the password of the user
+     * @param email     the email address of the user
+     * @param firstName the first name of the user
+     * @param lastName  the last name of the user
+     * @param gender    the gender of the user
+     * @param personID  the unique identifier of the user's person
+     */
     public User(String username, String password, String email, String firstName, String lastName, String gender, String personID) {
         this.username = username;
         this.password = password;

@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Represents a person in the system.
+ */
 public class Person {
     private String personID;
     private String associatedUsername;
@@ -10,6 +13,18 @@ public class Person {
     private String motherID;
     private String spouseID;
 
+    /**
+     * Constructs a Person object with the specified attributes.
+     *
+     * @param personID           the unique identifier of the person
+     * @param associatedUsername the username associated with the person
+     * @param firstName          the first name of the person
+     * @param lastName           the last name of the person
+     * @param gender             the gender of the person
+     * @param fatherID           the unique identifier of the person's father
+     * @param motherID           the unique identifier of the person's mother
+     * @param spouseID           the unique identifier of the person's spouse
+     */
     public Person(String personID, String associatedUsername, String firstName, String lastName, String gender, String fatherID, String motherID, String spouseID) {
         this.personID = personID;
         this.associatedUsername = associatedUsername;

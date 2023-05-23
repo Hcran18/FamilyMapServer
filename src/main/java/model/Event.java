@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Represents an event in the system.
+ */
 public class Event {
     private String eventID;
     private String associatedUsername;
@@ -11,6 +14,19 @@ public class Event {
     private String eventType;
     private int year;
 
+    /**
+     * Constructs an Event object with the specified attributes.
+     *
+     * @param eventID           the unique identifier of the event
+     * @param associatedUsername the username associated with the event
+     * @param personID          the unique identifier of the person associated with the event
+     * @param latitude          the latitude coordinate of the event's location
+     * @param longitude         the longitude coordinate of the event's location
+     * @param country           the country where the event occurred
+     * @param city              the city where the event occurred
+     * @param eventType         the type/category of the event
+     * @param year              the year when the event occurred
+     */
     public Event(String eventID, String associatedUsername, String personID, float latitude, float longitude, String country, String city, String eventType, int year) {
         this.eventID = eventID;
         this.associatedUsername = associatedUsername;
