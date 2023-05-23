@@ -5,13 +5,27 @@ import model.Event;
 import java.sql.*;
 import java.util.*;
 
+/**
+ * Provides data access methods for interacting with the Event table in the database.
+ */
 public class EventDAO {
     private final Connection conn;
 
+    /**
+     * Constructs an EventDAO object with the specified database connection.
+     *
+     * @param conn the database connection
+     */
     public EventDAO(Connection conn) {
         this.conn = conn;
     }
 
+    /**
+     * Inserts an event into the database.
+     *
+     * @param event the event to insert
+     * @throws DataAccessException if an error occurs while inserting the event
+     */
     public void insert(Event event) throws DataAccessException {
         //We can structure our string to be similar to a sql command, but if we insert question
         //marks we can change them later with help from the statement
@@ -38,6 +52,13 @@ public class EventDAO {
         }
     }
 
+    /**
+     * Finds an event by its ID.
+     *
+     * @param eventID the ID of the event to find
+     * @return the found Event object, or null if not found
+     * @throws DataAccessException if an error occurs while finding the event
+     */
     public Event findByID(String eventID) throws DataAccessException {
         Event event;
         ResultSet rs;
@@ -61,46 +82,109 @@ public class EventDAO {
 
     }
 
+    /**
+     * Finds all events associated with a specific user.
+     *
+     * @param username the username of the user
+     * @return a list of Event objects associated with the user
+     */
     public List<Event> findAllForUser(String username) {
         return Collections.emptyList();
     }
 
+    /**
+     * Finds all events associated with a specific person.
+     *
+     * @param personID the ID of the person
+     * @return a list of Event objects associated with the person
+     */
     public List<Event> findAllForPerson(String personID) {
         return Collections.emptyList();
     }
 
+    /**
+     * Finds events by event type.
+     *
+     * @param eventType the event type
+     * @return a list of Event objects matching the event type
+     */
     public List<Event> findByEventType(String eventType) {
         return Collections.emptyList();
     }
 
+    /**
+     * Finds events by location coordinates.
+     *
+     * @param latitude  the latitude coordinate
+     * @param longitude the longitude coordinate
+     * @return a list of Event objects near the specified location
+     */
     public List<Event> findByLocation(float latitude, float longitude) {
         return Collections.emptyList();
     }
 
+    /**
+     * Finds events by country.
+     *
+     * @param country the country
+     * @return a list of Event objects in the specified country
+     */
     public List<Event> findByCountry(String country) {
         return Collections.emptyList();
     }
 
+    /**
+     * Finds events by city.
+     *
+     * @param city the city
+     * @return a list of Event objects in the specified city
+     */
     public List<Event> findByCity(String city) {
         return Collections.emptyList();
     }
 
+    /**
+     * Finds events by year.
+     *
+     * @param year the year
+     * @return a list of Event objects in the specified year
+     */
     public List<Event> findByYear(int year) {
         return Collections.emptyList();
     }
 
+    /**
+     * Updates an existing event in the database.
+     *
+     * @param event the event to update
+     */
     public void updateEvent(Event event) {
 
     }
 
+    /**
+     * Deletes an event from the database.
+     *
+     * @param event the event to delete
+     */
     public void deleteEvent(Event event) {
 
     }
 
+    /**
+     * Deletes an event by its ID.
+     *
+     * @param eventID the ID of the event to delete
+     */
     public void deleteEventByID(String eventID) {
 
     }
 
+    /**
+     * Clears the Event table in the database.
+     *
+     * @throws DataAccessException if an error occurs while clearing the event table
+     */
     public void clear() throws DataAccessException {
         String sql = "DELETE FROM Events";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
