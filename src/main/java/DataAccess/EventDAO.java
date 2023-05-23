@@ -3,6 +3,7 @@ package DataAccess;
 import model.Event;
 
 import java.sql.*;
+import java.util.*;
 
 public class EventDAO {
     private final Connection conn;
@@ -58,6 +59,10 @@ public class EventDAO {
             throw new DataAccessException("Error encountered while finding an event in the database");
         }
 
+    }
+
+    public List<Event> findForUser(String username) {
+        return Collections.emptyList();
     }
 
     public void clear() throws DataAccessException {
