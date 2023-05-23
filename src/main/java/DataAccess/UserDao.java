@@ -42,4 +42,8 @@ public class UserDao {
     public void deleteByID(String personID) {
 
     }
+
+    public void clear() {
+
+    }
 }

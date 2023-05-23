@@ -38,7 +38,7 @@ public class EventDAO {
         }
     }
 
-    public Event find(String eventID) throws DataAccessException {
+    public Event findByID(String eventID) throws DataAccessException {
         Event event;
         ResultSet rs;
         String sql = "SELECT * FROM Events WHERE EventID = ?;";
@@ -61,8 +61,44 @@ public class EventDAO {
 
     }
 
-    public List<Event> findForUser(String username) {
+    public List<Event> findAllForUser(String username) {
         return Collections.emptyList();
+    }
+
+    public List<Event> findAllForPerson(String personID) {
+        return Collections.emptyList();
+    }
+
+    public List<Event> findByEventType(String eventType) {
+        return Collections.emptyList();
+    }
+
+    public List<Event> findByLocation(float latitude, float longitude) {
+        return Collections.emptyList();
+    }
+
+    public List<Event> findByCountry(String country) {
+        return Collections.emptyList();
+    }
+
+    public List<Event> findByCity(String city) {
+        return Collections.emptyList();
+    }
+
+    public List<Event> findByYear(int year) {
+        return Collections.emptyList();
+    }
+
+    public void updateEvent(Event event) {
+
+    }
+
+    public void deleteEvent(Event event) {
+
+    }
+
+    public void deleteEventByID(String eventID) {
+
     }
 
     public void clear() throws DataAccessException {

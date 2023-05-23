@@ -47,4 +47,8 @@ public class PersonDao {
     public void deleteByID(String personID) {
 
     }
+
+    public void clear() {
+
+    }
 }
