@@ -1,10 +1,18 @@
 package Service;
 
 import Result.FillResult;
-import passoffrequest.FillRequest;
 
+
+/**
+ * Service class that handles the fill operation.
+ */
 public class FillService {
-    public FillResult fill(FillRequest r) {
+    /**
+     * Fills the database with generated data.
+     *
+     * @return The result of the fill operation.
+     */
+    public FillResult fill() {
         return null;
     }
 }
