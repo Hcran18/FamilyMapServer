@@ -20,11 +20,11 @@ public class UserDao {
     }
 
     /**
-     * Creates a new user in the database.
+     * Inserts a user into the database.
      *
      * @param user the user to create
      */
-    public void createUser(User user) {
+    public void insertUser(User user) {
 
     }
 

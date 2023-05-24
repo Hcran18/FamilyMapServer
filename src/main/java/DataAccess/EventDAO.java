@@ -26,7 +26,7 @@ public class EventDAO {
      * @param event the event to insert
      * @throws DataAccessException if an error occurs while inserting the event
      */
-    public void insert(Event event) throws DataAccessException {
+    public void insertEvent(Event event) throws DataAccessException {
         //We can structure our string to be similar to a sql command, but if we insert question
         //marks we can change them later with help from the statement
         String sql = "INSERT INTO Events (EventID, AssociatedUsername, PersonID, Latitude, Longitude, " +

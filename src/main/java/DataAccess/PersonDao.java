@@ -21,11 +21,11 @@ public class PersonDao {
     }
 
     /**
-     * Creates a new person in the database.
+     * Inserts a person into the database.
      *
      * @param person the person to create
      */
-    public void createPerson(Person person) {
+    public void insertPerson(Person person) {
 
     }
 

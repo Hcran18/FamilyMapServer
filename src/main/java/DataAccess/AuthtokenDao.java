@@ -20,11 +20,11 @@ public class AuthtokenDao {
     }
 
     /**
-     * Creates a new authtoken in the database.
+     * Inserts an authtoken into the database.
      *
      * @param authtoken the authtoken to create
      */
-    public void createAuthtoken(Authtoken authtoken) {
+    public void insertAuthtoken(Authtoken authtoken) {
 
     }
 
