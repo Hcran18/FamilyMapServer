@@ -4,11 +4,34 @@ package Request;
  * Represents a request for user registration.
  */
 public class RegisterRequest {
+    /**
+     * The username for the registration request.
+     */
     private String username;
+
+    /**
+     * The password for the registration request.
+     */
     private String password;
+
+    /**
+     * The email for the registration request.
+     */
     private String email;
+
+    /**
+     * The first name for the registration request.
+     */
     private String firstName;
+
+    /**
+     * The last name for the registration request.
+     */
     private String lastName;
+
+    /**
+     * The gender for the registration request.
+     */
     private String gender;
 
     public String getUsername() {

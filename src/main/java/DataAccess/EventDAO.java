@@ -9,6 +9,9 @@ import java.util.*;
  * Provides data access methods for interacting with the Event table in the database.
  */
 public class EventDAO {
+    /**
+     * The database connection used for interacting with the Event table.
+     */
     private final Connection conn;
 
     /**

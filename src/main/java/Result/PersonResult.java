@@ -6,8 +6,19 @@ import model.Person;
  * Represents the result of a person-related operation.
  */
 public class PersonResult {
+    /**
+     * An array of Person objects containing the data related to the operation.
+     */
     private Person[] data;
+
+    /**
+     * Indicates whether the operation was successful.
+     */
     private boolean success;
+
+    /**
+     * The message associated with the operation result.
+     */
     private String message;
 
     public Person[] getData() {

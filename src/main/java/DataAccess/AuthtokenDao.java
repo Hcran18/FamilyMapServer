@@ -8,6 +8,9 @@ import java.sql.*;
  * Provides data access methods for interacting with the Authtoken table in the database.
  */
 public class AuthtokenDao {
+    /**
+     * The database connection used for interacting with the Authtoken table.
+     */
     private final Connection conn;
 
     /**

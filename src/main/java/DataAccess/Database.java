@@ -9,6 +9,9 @@ import java.sql.Statement;
  * Class responsible for managing the database connection.
  */
 public class Database {
+    /**
+     * The connection object representing the database connection.
+     */
     private Connection conn;
 
     // Whenever we want to make a change to our database we will have to open a connection and use

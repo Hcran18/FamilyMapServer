@@ -9,6 +9,9 @@ import java.util.*;
  * Provides data access methods for interacting with the Person table in the database.
  */
 public class PersonDao {
+    /**
+     * The database connection used for interacting with the Person table.
+     */
     private final Connection conn;
 
     /**

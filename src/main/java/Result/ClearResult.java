@@ -4,7 +4,14 @@ package Result;
  * Represents the result of a clear operation.
  */
 public class ClearResult {
+    /**
+     * The message associated with the clear operation result.
+     */
     private String message;
+
+    /**
+     * Indicates whether the clear operation was successful.
+     */
     private boolean success;
 
     public String getMessage() {

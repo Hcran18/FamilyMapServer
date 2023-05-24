@@ -4,16 +4,59 @@ package Result;
  * Represents the result of an event-related operation by event ID.
  */
 public class Event_EventIDResult {
+    /**
+     * The username associated with the event.
+     */
     private String associatedUsername;
+
+    /**
+     * The ID of the event.
+     */
     private String eventID;
+
+    /**
+     * The ID of the person associated with the event.
+     */
     private String personID;
+
+    /**
+     * The latitude coordinate of the event location.
+     */
     private float latitude;
+
+    /**
+     * The longitude coordinate of the event location.
+     */
     private float longitude;
+
+    /**
+     * The country where the event took place.
+     */
     private String country;
+
+    /**
+     * The city where the event took place.
+     */
     private String city;
+
+    /**
+     * The type of the event.
+     */
     private String eventType;
+
+    /**
+     * The year when the event occurred.
+     */
     private int year;
+
+    /**
+     * Indicates whether the event-related operation was successful.
+     */
     private boolean success;
+
+    /**
+     * The message associated with the event-related operation result.
+     */
     private String message;
 
     public String getAssociatedUsername() {

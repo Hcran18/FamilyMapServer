@@ -4,13 +4,44 @@ package model;
  * Represents a person in the system.
  */
 public class Person {
+    /**
+     * The unique identifier of the person.
+     */
     private String personID;
+
+    /**
+     * The associated username of the person.
+     */
     private String associatedUsername;
+
+    /**
+     * The first name of the person.
+     */
     private String firstName;
+
+    /**
+     * The last name of the person.
+     */
     private String lastName;
+
+    /**
+     * The gender of the person.
+     */
     private String gender;
+
+    /**
+     * The unique identifier of the father of the person.
+     */
     private String fatherID;
+
+    /**
+     * The unique identifier of the mother of the person.
+     */
     private String motherID;
+
+    /**
+     * The unique identifier of the spouse of the person.
+     */
     private String spouseID;
 
     /**

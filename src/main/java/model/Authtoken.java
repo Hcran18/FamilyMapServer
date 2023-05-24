@@ -4,7 +4,14 @@ package model;
  * Represents an authentication token associated with a user.
  */
 public class Authtoken {
+    /**
+     * The authentication token.
+     */
     private String authtoken;
+
+    /**
+     * The username associated with the authentication token.
+     */
     private String username;
 
     /**

@@ -4,10 +4,29 @@ package Result;
  * Represents the result of a user login operation.
  */
 public class LoginResult {
+    /**
+     * The authentication token associated with the logged-in user.
+     */
     private String authtoken;
+
+    /**
+     * The username of the logged-in user.
+     */
     private String username;
+
+    /**
+     * The person ID associated with the logged-in user.
+     */
     private String personID;
+
+    /**
+     * Indicates whether the login operation was successful.
+     */
     private boolean success;
+
+    /**
+     * The message associated with the login operation result.
+     */
     private String message;
 
     public String getAuthtoken() {

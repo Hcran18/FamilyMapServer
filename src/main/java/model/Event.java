@@ -4,14 +4,49 @@ package model;
  * Represents an event in the system.
  */
 public class Event {
+    /**
+     * The unique identifier of the event.
+     */
     private String eventID;
+
+    /**
+     * The associated username of the event.
+     */
     private String associatedUsername;
+
+    /**
+     * The unique identifier of the person associated with the event.
+     */
     private String personID;
+
+    /**
+     * The latitude coordinate of the event's location.
+     */
     private float latitude;
+
+    /**
+     * The longitude coordinate of the event's location.
+     */
     private float longitude;
+
+    /**
+     * The country where the event occurred.
+     */
     private String country;
+
+    /**
+     * The city where the event occurred.
+     */
     private String city;
+
+    /**
+     * The type or description of the event.
+     */
     private String eventType;
+
+    /**
+     * The year when the event occurred.
+     */
     private int year;
 
     /**

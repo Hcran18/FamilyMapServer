@@ -4,12 +4,39 @@ package model;
  * Represents a user in the system.
  */
 public class User {
+    /**
+     * The username of the user.
+     */
     private String username;
+
+    /**
+     * The password of the user.
+     */
     private String password;
+
+    /**
+     * The email address of the user.
+     */
     private String email;
+
+    /**
+     * The first name of the user.
+     */
     private String firstName;
+
+    /**
+     * The last name of the user.
+     */
     private String lastName;
+
+    /**
+     * The gender of the user.
+     */
     private String gender;
+
+    /**
+     * The unique identifier of the person associated with the user.
+     */
     private String personID;
 
     /**

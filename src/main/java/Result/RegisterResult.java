@@ -4,10 +4,29 @@ package Result;
  * Represents the result of a user registration operation.
  */
 public class RegisterResult {
+    /**
+     * The authentication token generated for the registered user.
+     */
     private String authtoken;
+
+    /**
+     * The username of the registered user.
+     */
     private String username;
+
+    /**
+     * The unique identifier of the person associated with the registered user.
+     */
     private String personID;
+
+    /**
+     * Indicates whether the registration operation was successful.
+     */
     private boolean success;
+
+    /**
+     * The message associated with the registration result.
+     */
     private String message;
 
     public String getAuthtoken() {

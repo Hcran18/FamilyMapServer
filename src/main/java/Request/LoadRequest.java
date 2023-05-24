@@ -8,8 +8,19 @@ import model.Event;
  * Represents a request to load data into the application.
  */
 public class LoadRequest {
+    /**
+     * An array of User objects to be loaded.
+     */
     User[] users;
+
+    /**
+     * An array of Person objects to be loaded.
+     */
     Person[] persons;
+
+    /**
+     * An array of Event objects to be loaded.
+     */
     Event[] events;
 
     public User[] getUsers() {

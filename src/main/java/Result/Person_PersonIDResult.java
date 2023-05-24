@@ -4,15 +4,54 @@ package Result;
  * Represents the result of a person-related operation by person ID.
  */
 public class Person_PersonIDResult {
+    /**
+     * The username associated with the person.
+     */
     private String associatedUsername;
+
+    /**
+     * The ID of the person.
+     */
     private String personID;
+
+    /**
+     * The first name of the person.
+     */
     private String firstName;
+
+    /**
+     * The last name of the person.
+     */
     private String lastName;
+
+    /**
+     * The gender of the person.
+     */
     private String gender;
+
+    /**
+     * The ID of the person's father.
+     */
     private String fatherID;
+
+    /**
+     * The ID of the person's mother.
+     */
     private String motherID;
+
+    /**
+     * The ID of the person's spouse.
+     */
     private String spouseID;
+
+    /**
+     * Indicates whether the operation was successful.
+     */
     private boolean success;
+
+    /**
+     * The message associated with the operation result.
+     */
     private String message;
 
     public String getAssociatedUsername() {

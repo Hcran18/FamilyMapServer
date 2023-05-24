@@ -8,6 +8,9 @@ import java.sql.*;
  * Provides data access methods for interacting with the User table in the database.
  */
 public class UserDao {
+    /**
+     * The database connection used for interacting with the User table.
+     */
     private final Connection conn;
 
     /**
