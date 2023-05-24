@@ -2,6 +2,9 @@ package Result;
 
 import model.Person;
 
+/**
+ * Represents the result of a person-related operation.
+ */
 public class PersonResult {
     private Person[] data;
     private boolean success;

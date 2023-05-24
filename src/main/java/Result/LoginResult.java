@@ -1,5 +1,8 @@
 package Result;
 
+/**
+ * Represents the result of a user login operation.
+ */
 public class LoginResult {
     private String authtoken;
     private String username;

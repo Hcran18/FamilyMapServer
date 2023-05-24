@@ -1,5 +1,8 @@
 package Result;
 
+/**
+ * Represents the result of a data loading operation.
+ */
 public class LoadResult {
     private String message;
     private boolean success;

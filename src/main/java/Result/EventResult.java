@@ -2,6 +2,9 @@ package Result;
 
 import model.Event;
 
+/**
+ * Represents the result of an event-related operation.
+ */
 public class EventResult {
     private Event[] data;
     private boolean success;

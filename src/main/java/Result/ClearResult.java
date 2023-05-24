@@ -1,5 +1,8 @@
 package Result;
 
+/**
+ * Represents the result of a clear operation.
+ */
 public class ClearResult {
     private String message;
     private boolean success;

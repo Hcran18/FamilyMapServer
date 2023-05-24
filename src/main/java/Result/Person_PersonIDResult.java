@@ -1,5 +1,8 @@
 package Result;
 
+/**
+ * Represents the result of a person-related operation by person ID.
+ */
 public class Person_PersonIDResult {
     private String associatedUsername;
     private String personID;

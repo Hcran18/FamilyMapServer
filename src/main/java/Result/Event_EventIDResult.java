@@ -1,5 +1,8 @@
 package Result;
 
+/**
+ * Represents the result of an event-related operation by event ID.
+ */
 public class Event_EventIDResult {
     private String associatedUsername;
     private String eventID;

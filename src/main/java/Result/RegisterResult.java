@@ -1,5 +1,8 @@
 package Result;
 
+/**
+ * Represents the result of a user registration operation.
+ */
 public class RegisterResult {
     private String authtoken;
     private String username;

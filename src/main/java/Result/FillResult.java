@@ -1,5 +1,8 @@
 package Result;
 
+/**
+ * Represents the result of a data filling operation.
+ */
 public class FillResult {
     private String message;
     private boolean success;
