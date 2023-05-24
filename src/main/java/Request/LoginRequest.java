@@ -1,5 +1,8 @@
 package Request;
 
+/**
+ * Represents a request for user login.
+ */
 public class LoginRequest {
     private String username;
     private String password;

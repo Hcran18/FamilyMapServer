@@ -1,5 +1,8 @@
 package Request;
 
+/**
+ * Represents a request for user registration.
+ */
 public class RegisterRequest {
     private String username;
     private String password;

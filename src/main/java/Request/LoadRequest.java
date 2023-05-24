@@ -4,6 +4,9 @@ import model.User;
 import model.Person;
 import model.Event;
 
+/**
+ * Represents a request to load data into the application.
+ */
 public class LoadRequest {
     User[] users;
     Person[] persons;
