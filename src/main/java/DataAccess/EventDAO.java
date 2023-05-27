@@ -189,7 +189,7 @@ public class EventDAO {
      * @throws DataAccessException if an error occurs while clearing the event table
      */
     public void clear() throws DataAccessException {
-        String sql = "DELETE FROM Events";
+        String sql = "DELETE FROM event";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.executeUpdate();
         } catch (SQLException e) {

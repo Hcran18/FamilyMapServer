@@ -53,6 +53,7 @@ public class UserDao {
      * Finds a user by their ID.
      *
      * @param personID the ID of the user to find
+     * @throws DataAccessException if an error occurs while finding the User by ID
      * @return the found User object, or null if not found
      */
     public User findByID(String personID) throws DataAccessException {
@@ -142,7 +143,15 @@ public class UserDao {
     /**
      * Clears the User table in the database.
      */
-    public void clear() {
+    public void clear() throws DataAccessException {
+        String sql = "DELETE FROM user";
+        try(PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while clearing the user table");
+        }
 
     }
 }
