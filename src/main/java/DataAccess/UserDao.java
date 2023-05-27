@@ -26,9 +26,27 @@ public class UserDao {
      * Inserts a user into the database.
      *
      * @param user the user to create
+     * @throws DataAccessException if an error occurs while inserting a User
      */
-    public void insertUser(User user) {
+    public void insertUser(User user) throws DataAccessException{
+        String sql = "INSERT INTO user (username, password, email, firstName, lastName, gender, personID) " +
+                "VALUES(?,?,?,?,?,?,?)";
 
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getPassword());
+            stmt.setString(3, user.getEmail());
+            stmt.setString(4, user.getFirstName());
+            stmt.setString(5, user.getLastName());
+            stmt.setString(6, user.getGender());
+            stmt.setString(7, user.getPersonID());
+
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while inserting a User into the database");
+        }
     }
 
     /**
@@ -37,8 +55,30 @@ public class UserDao {
      * @param personID the ID of the user to find
      * @return the found User object, or null if not found
      */
-    public User findByID(String personID) {
-        return null;
+    public User findByID(String personID) throws DataAccessException {
+        User user;
+        ResultSet rs;
+        String sql = "SELECT * FROM user WHERE personID = ?;";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, personID);
+            rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                user = new User(rs.getString("username"), rs.getString("password"),
+                        rs.getString("email"), rs.getString("firstName"),
+                        rs.getString("lastName"), rs.getString("gender"),
+                        rs.getString("personID"));
+                return user;
+            }
+            else {
+                return null;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding a User in the database by personID");
+        }
     }
 
     /**

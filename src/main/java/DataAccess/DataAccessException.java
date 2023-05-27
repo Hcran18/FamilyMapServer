@@ -9,7 +9,7 @@ public class DataAccessException extends Exception {
      *
      * @param message the error message
      */
-    DataAccessException(String message) {
+    public DataAccessException(String message) {
         super(message);
     }
 }
