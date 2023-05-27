@@ -142,6 +142,7 @@ public class UserDao {
 
     /**
      * Clears the User table in the database.
+     * @throws DataAccessException if an error occurs while clearing the user table
      */
     public void clear() throws DataAccessException {
         String sql = "DELETE FROM user";
@@ -152,6 +153,5 @@ public class UserDao {
             e.printStackTrace();
             throw new DataAccessException("Error encountered while clearing the user table");
         }
-
     }
 }
