@@ -66,7 +66,7 @@ public class EventDAOTest {
     }
 
     @Test
-    public void findPass() throws DataAccessException {
+    public void findByIDPass() throws DataAccessException {
         // Insert the event
         eDao.insertEvent(bestEvent);
 
@@ -81,7 +81,7 @@ public class EventDAOTest {
     }
 
     @Test
-    public void findFail() throws DataAccessException{
+    public void findByIDFail() throws DataAccessException{
         // Attempt to find an event that does not exist
         Event foundEvent = eDao.findByID("IDForFakeEvent");
 

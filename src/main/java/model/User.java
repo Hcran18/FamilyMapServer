@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 /**
  * Represents a user in the system.
  */
@@ -114,5 +116,28 @@ public class User {
 
     public void setPersonID(String personID) {
         this.personID = personID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (o.getClass() != this.getClass()) {
+            return false;
+        }
+
+        User user = (User) o;
+
+        return Objects.equals(this.username, user.username) &&
+                Objects.equals(this.password, user.password) &&
+                Objects.equals(this.email, user.email) &&
+                Objects.equals(this.firstName, user.firstName) &&
+                Objects.equals(this.lastName, user.lastName) &&
+                Objects.equals(this.gender, user.gender) &&
+                Objects.equals(this.personID, user.personID);
     }
 }
