@@ -82,7 +82,6 @@ public class EventDAO {
             e.printStackTrace();
             throw new DataAccessException("Error encountered while finding an event in the database");
         }
-
     }
 
     /**

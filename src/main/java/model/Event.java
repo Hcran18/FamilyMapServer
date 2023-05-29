@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 /**
  * Represents an event in the system.
  */
@@ -144,5 +146,30 @@ public class Event {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (o.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Event event = (Event) o;
+
+        return Float.compare(event.latitude, this.latitude) == 0 &&
+                Float.compare(event.longitude, this.longitude) == 0 &&
+                this.year == event.year &&
+                Objects.equals(this.eventID, event.eventID) &&
+                Objects.equals(this.associatedUsername, event.associatedUsername) &&
+                Objects.equals(this.personID, event.personID) &&
+                Objects.equals(this.country, event.country) &&
+                Objects.equals(this.city, event.city) &&
+                Objects.equals(this.eventType, event.eventType);
     }
 }
