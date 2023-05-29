@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 /**
  * Represents a person in the system.
  */
@@ -129,5 +131,29 @@ public class Person {
 
     public void setSpouseID(String spouseID) {
         this.spouseID = spouseID;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (o.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Person person = (Person) o;
+
+        return Objects.equals(this.personID, person.personID) &&
+                Objects.equals(this.associatedUsername, person.associatedUsername) &&
+                Objects.equals(this.firstName, person.firstName) &&
+                Objects.equals(this.lastName, person.lastName) &&
+                Objects.equals(this.gender, person.gender) &&
+                Objects.equals(this.fatherID, person.fatherID) &&
+                Objects.equals(this.motherID, person.motherID) &&
+                Objects.equals(this.spouseID, person.spouseID);
     }
 }
