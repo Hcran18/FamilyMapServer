@@ -45,7 +45,7 @@ public class UserDAOTest {
         uDao.insertUser(newUser);
 
         // Find the person that we tried to insert
-        User compareTest = uDao.findByID(newUser.getPersonID());
+        User compareTest = uDao.findByUsername(newUser.getUsername());
 
         // Assert that what we found is not null
         assertNotNull(compareTest);
@@ -64,12 +64,12 @@ public class UserDAOTest {
     }
 
     @Test
-    public void findByIDPass() throws DataAccessException {
+    public void findByUsernamePass() throws DataAccessException {
         // Insert a new user
         uDao.insertUser(newUser);
 
         // Attempt to find what we inserted
-        User foundUser = uDao.findByID(newUser.getPersonID());
+        User foundUser = uDao.findByUsername(newUser.getUsername());
 
         // Assert that what we found is not null
         assertNotNull(foundUser);
@@ -79,9 +79,9 @@ public class UserDAOTest {
     }
 
     @Test
-    public void findByIDFail() throws DataAccessException {
+    public void findByUsernameFail() throws DataAccessException {
         // Attempt to find a user that does not exist
-        assertThrows(DataAccessException.class, () -> uDao.findByID("IDForFakeUser"));
+        assertNull(uDao.findByUsername("IDForFakeUser"));
     }
 
     @Test
@@ -99,7 +99,7 @@ public class UserDAOTest {
         uDao.clear();
 
         // These users should now not exist so a DataAccessException should be thrown
-        assertThrows(DataAccessException.class, () -> uDao.findByID(user1.getPersonID()));
-        assertThrows(DataAccessException.class, () -> uDao.findByID(user2.getPersonID()));
+        assertNull(uDao.findByUsername(user1.getUsername()));
+        assertNull(uDao.findByUsername(user2.getUsername()));
     }
 }

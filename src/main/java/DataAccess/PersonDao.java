@@ -76,7 +76,7 @@ public class PersonDao {
                 return person;
             }
             else {
-                throw new DataAccessException("Person does not exist");
+                return null;
             }
         }
         catch (SQLException e) {

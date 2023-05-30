@@ -73,7 +73,7 @@ public class UserDao {
                 return user;
             }
             else {
-                throw new DataAccessException("User does not exist");
+                return null;
             }
         }
         catch (SQLException e) {
@@ -88,8 +88,30 @@ public class UserDao {
      * @param username the username of the user to find
      * @return the found User object, or null if not found
      */
-    public User findByUsername(String username) {
-        return null;
+    public User findByUsername(String username) throws DataAccessException {
+        User user;
+        ResultSet rs;
+        String sql = "SELECT * FROM user WHERE username = ?;";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
+            rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                user = new User(rs.getString("username"), rs.getString("password"),
+                        rs.getString("email"), rs.getString("firstName"),
+                        rs.getString("lastName"), rs.getString("gender"),
+                        rs.getString("personID"));
+                return user;
+            }
+            else {
+                return null;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding a User in the database by personID");
+        }
     }
 
     /**

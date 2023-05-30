@@ -81,7 +81,7 @@ public class PersonDAOTest {
     @Test
     public void findByIDFail() throws DataAccessException {
         // Attempt to find a person that does not exist
-        assertThrows(DataAccessException.class, () -> pDao.findByID("IDForFakePerson"));
+        assertNull(pDao.findByID("IDForFakePerson"));
     }
 
     @Test
@@ -99,7 +99,7 @@ public class PersonDAOTest {
         pDao.clear();
 
         // These people should now not exist so a DataAccessException should be thrown
-        assertThrows(DataAccessException.class, () -> pDao.findByID(person1.getPersonID()));
-        assertThrows(DataAccessException.class, () -> pDao.findByID(person2.getPersonID()));
+        assertNull(pDao.findByID(person1.getPersonID()));
+        assertNull(pDao.findByID(person2.getPersonID()));
     }
 }
