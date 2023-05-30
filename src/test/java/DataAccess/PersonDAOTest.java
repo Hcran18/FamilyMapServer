@@ -83,7 +83,7 @@ public class PersonDAOTest {
         // Attempt to find a person that does not exist
         Person foundPerson = pDao.findByID("IDForFakeUser");
 
-        // Assert the found person to be null
+        // Assert the found person to be null/does not exist
         assertNull(foundPerson);
     }
 

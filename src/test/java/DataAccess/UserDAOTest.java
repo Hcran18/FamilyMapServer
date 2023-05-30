@@ -83,7 +83,7 @@ public class UserDAOTest {
         // Attempt to find a user that does not exist
         User foundUser = uDao.findByID("IDForFakeUser");
 
-        // Assert that what we found is null
+        // Assert that what we found is null/does not exist
         assertNull(foundUser);
     }
 
@@ -109,5 +109,4 @@ public class UserDAOTest {
         assertNull(foundUser1);
         assertNull(foundUser2);
     }
-
 }
