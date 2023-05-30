@@ -81,10 +81,7 @@ public class UserDAOTest {
     @Test
     public void findByIDFail() throws DataAccessException {
         // Attempt to find a user that does not exist
-        User foundUser = uDao.findByID("IDForFakeUser");
-
-        // Assert that what we found is null/does not exist
-        assertNull(foundUser);
+        assertThrows(DataAccessException.class, () -> uDao.findByID("IDForFakeUser"));
     }
 
     @Test
@@ -101,12 +98,8 @@ public class UserDAOTest {
         // Clear the database
         uDao.clear();
 
-        // Attempt to find the users in the database
-        User foundUser1 = uDao.findByID(user1.getPersonID());
-        User foundUser2 = uDao.findByID(user2.getPersonID());
-
-        // Assert that the found users are null
-        assertNull(foundUser1);
-        assertNull(foundUser2);
+        // These users should now not exist so a DataAccessException should be thrown
+        assertThrows(DataAccessException.class, () -> uDao.findByID(user1.getPersonID()));
+        assertThrows(DataAccessException.class, () -> uDao.findByID(user2.getPersonID()));
     }
 }

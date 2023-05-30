@@ -76,7 +76,7 @@ public class EventDAO {
                         rs.getInt("year"));
                 return event;
             } else {
-                return null;
+                throw new DataAccessException("Event does not exist");
             }
         } catch (SQLException e) {
             e.printStackTrace();

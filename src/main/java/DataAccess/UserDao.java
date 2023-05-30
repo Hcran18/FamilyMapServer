@@ -73,7 +73,7 @@ public class UserDao {
                 return user;
             }
             else {
-                return null;
+                throw new DataAccessException("User does not exist");
             }
         }
         catch (SQLException e) {

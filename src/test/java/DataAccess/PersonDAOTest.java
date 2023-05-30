@@ -81,10 +81,7 @@ public class PersonDAOTest {
     @Test
     public void findByIDFail() throws DataAccessException {
         // Attempt to find a person that does not exist
-        Person foundPerson = pDao.findByID("IDForFakeUser");
-
-        // Assert the found person to be null/does not exist
-        assertNull(foundPerson);
+        assertThrows(DataAccessException.class, () -> pDao.findByID("IDForFakePerson"));
     }
 
     @Test
@@ -101,12 +98,8 @@ public class PersonDAOTest {
         // Clear the database
         pDao.clear();
 
-        // Attempt to find the events in the database
-        Person foundPerson1 = pDao.findByID(person1.getPersonID());
-        Person foundPerson2 = pDao.findByID(person2.getPersonID());
-
-        // Assert that the found persons are null
-        assertNull(foundPerson1);
-        assertNull(foundPerson2);
+        // These people should now not exist so a DataAccessException should be thrown
+        assertThrows(DataAccessException.class, () -> pDao.findByID(person1.getPersonID()));
+        assertThrows(DataAccessException.class, () -> pDao.findByID(person2.getPersonID()));
     }
 }

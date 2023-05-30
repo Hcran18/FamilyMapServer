@@ -83,10 +83,7 @@ public class EventDAOTest {
     @Test
     public void findByIDFail() throws DataAccessException{
         // Attempt to find an event that does not exist
-        Event foundEvent = eDao.findByID("IDForFakeEvent");
-
-        // Assert the found event to be null
-        assertNull(foundEvent);
+        assertThrows(DataAccessException.class, () -> eDao.findByID("IDForFakeEvent"));
     }
 
     @Test
@@ -104,12 +101,8 @@ public class EventDAOTest {
         // Attempt to clear the database
         eDao.clear();
 
-        // Attempt to find the events in the database
-        Event foundEvent1 = eDao.findByID(event1.getEventID());
-        Event foundEvent2 = eDao.findByID(event2.getEventID());
-
-        // Assert the found events are null
-        assertNull(foundEvent1);
-        assertNull(foundEvent2);
+        // These events should now not exist so a DataAccessException should be thrown
+        assertThrows(DataAccessException.class, () -> eDao.findByID(event1.getPersonID()));
+        assertThrows(DataAccessException.class, () -> eDao.findByID(event2.getPersonID()));
     }
 }
