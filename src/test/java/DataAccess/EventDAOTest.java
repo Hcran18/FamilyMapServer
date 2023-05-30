@@ -37,7 +37,7 @@ public class EventDAOTest {
 
     @AfterEach
     public void tearDown() {
-        // Close the connect and don't commit any changes
+        // Close the connection and don't commit any changes
         db.closeConnection(false);
     }
 
