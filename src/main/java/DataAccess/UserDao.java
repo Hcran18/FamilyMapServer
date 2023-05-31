@@ -147,10 +147,19 @@ public class UserDao {
     /**
      * Deletes a user from the database.
      *
-     * @param user the user to delete
+     * @param username the user to delete
      */
-    public void delete(User user) {
+    public void delete(String username) throws DataAccessException {
+        String sql = "DELETE FROM user WHERE username = ?;";
 
+        try (PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, username);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while deleting a User in the database by username");
+        }
     }
 
     /**

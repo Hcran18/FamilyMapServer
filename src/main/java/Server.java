@@ -2,6 +2,8 @@ import java.io.*;
 import java.net.*;
 
 import Handler.FileHandler;
+import Handler.LoginHandler;
+import Handler.RegisterHandler;
 import com.sun.net.httpserver.*;
 
 /*
@@ -75,13 +77,13 @@ public class Server {
 		// When the HttpServer receives an HTTP request containing the
 		// "/games/list" URL path, it will forward the request to ListGamesHandler 
 		// for processing.
-		//server.createContext("/games/list", new ListGamesHandler());
+		server.createContext("/user/register", new RegisterHandler());
 			
 		// Create and install the HTTP handler for the "/routes/claim" URL path.
 		// When the HttpServer receives an HTTP request containing the
 		// "/routes/claim" URL path, it will forward the request to ClaimRouteHandler
 		// for processing.
-		//server.createContext("/routes/claim", new ClaimRouteHandler());
+		server.createContext("/user/login", new LoginHandler());
 		
 		// Create and install the "default" (or "file") HTTP handler.
 		// All requests that do not match the other handler URLs
