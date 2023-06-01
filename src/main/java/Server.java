@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.*;
 
+import Handler.ClearHandler;
 import Handler.FileHandler;
 import Handler.LoginHandler;
 import Handler.RegisterHandler;
@@ -84,6 +85,8 @@ public class Server {
 		// "/routes/claim" URL path, it will forward the request to ClaimRouteHandler
 		// for processing.
 		server.createContext("/user/login", new LoginHandler());
+
+		server.createContext("/clear", new ClearHandler());
 		
 		// Create and install the "default" (or "file") HTTP handler.
 		// All requests that do not match the other handler URLs

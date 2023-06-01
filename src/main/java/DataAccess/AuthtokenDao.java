@@ -134,7 +134,14 @@ public class AuthtokenDao {
     /**
      * Clears the Authtoken table in the database.
      */
-    public void clear() {
-
+    public void clear() throws DataAccessException {
+        String sql = "DELETE FROM auth_token";
+        try(PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while clearing the auth_token table");
+        }
     }
 }
