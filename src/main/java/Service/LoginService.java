@@ -1,5 +1,6 @@
 package Service;
 
+import DataAccess.AuthtokenDao;
 import DataAccess.DataAccessException;
 import DataAccess.Database;
 import DataAccess.UserDao;
@@ -16,6 +17,7 @@ public class LoginService {
     private Database db;
     private User foundUser;
     private UserDao uDao;
+    private AuthtokenDao aDao;
     /**
      * Authenticates the user login based on the provided login request.
      *
@@ -34,13 +36,14 @@ public class LoginService {
             String username = r.getUsername();
 
             foundUser = uDao.findByUsername(username);
-            db.closeConnection(true);
 
             LoginResult result = new LoginResult();
 
             if (foundUser != null) {
                 if (r.getPassword().equals(foundUser.getPassword())) {
-                    result.setAuthtoken("Find Authtoken here");
+                    aDao = new AuthtokenDao(conn);
+
+                    result.setAuthtoken(aDao.findByUsername(username).getAuthtoken());
                     result.setUsername(foundUser.getUsername());
                     result.setPersonID(foundUser.getPersonID());
                     result.setSuccess(true);
@@ -50,12 +53,15 @@ public class LoginService {
                     result.setSuccess(false);
                 }
 
+                db.closeConnection(true);
+
                 return result;
             }
             else {
                 result.setMessage("Error: User does not exist");
                 result.setSuccess(false);
 
+                db.closeConnection(true);
                 return result;
             }
         }

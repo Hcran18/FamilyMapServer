@@ -1,10 +1,12 @@
 package Service;
 
+import DataAccess.AuthtokenDao;
 import DataAccess.DataAccessException;
 import DataAccess.Database;
 import DataAccess.UserDao;
 import Request.LoginRequest;
 import Result.LoginResult;
+import model.Authtoken;
 import model.User;
 import org.junit.jupiter.api.*;
 
@@ -29,6 +31,12 @@ public class LoginServiceTest {
 
             uDao.insertUser(newUser);
 
+            AuthtokenDao aDao = new AuthtokenDao(conn);
+
+            Authtoken newAuthtoken = new Authtoken("myAuthtoken", "username");
+
+            aDao.insertAuthtoken(newAuthtoken);
+
             db.closeConnection(true);
         }
         catch (DataAccessException e) {
@@ -45,6 +53,10 @@ public class LoginServiceTest {
             UserDao uDao = new UserDao(conn);
 
             uDao.delete("username");
+
+            AuthtokenDao aDao = new AuthtokenDao(conn);
+
+            aDao.deleteByAuthtoken("myAuthtoken");
 
             db.closeConnection(true);
         }
@@ -69,7 +81,7 @@ public class LoginServiceTest {
         LoginResult result = service.login(request);
 
         assertTrue(result.isSuccess());
-        assertNotNull(result.getAuthtoken());
+        assertEquals("myAuthtoken", result.getAuthtoken());
         assertEquals("username", result.getUsername());
         assertNotNull(result.getPersonID());
     }
