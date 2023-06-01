@@ -9,6 +9,8 @@ import Result.LoginResult;
 import Result.RegisterResult;
 import model.Authtoken;
 import model.User;
+
+import java.util.Objects;
 import java.util.UUID;
 
 import java.sql.Connection;
@@ -40,8 +42,8 @@ public class RegisterService {
             UUID personIDUuid = UUID.randomUUID();
             String personID = personIDUuid.toString();
 
-            // TODO check that Gender is one letter
-            if (r.getGender().length() == 1) {
+            if (r.getGender().length() == 1 && (Objects.equals(r.getGender(), "m") ||
+                                                Objects.equals(r.getGender(), "f"))) {
                 newUser = new User(r.getUsername(), r.getPassword(), r.getEmail(), r.getFirstName(),
                         r.getLastName(), r.getGender(), personID);
 
@@ -70,7 +72,7 @@ public class RegisterService {
 
                 RegisterResult result = new RegisterResult();
 
-                result.setMessage("Error: Gender can only be one letter");
+                result.setMessage("Error: Gender can only be m or f");
                 result.setSuccess(false);
 
                 return result;

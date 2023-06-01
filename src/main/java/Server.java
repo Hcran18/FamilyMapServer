@@ -1,10 +1,12 @@
 import java.io.*;
 import java.net.*;
 
+import FakeFamilyData.*;
 import Handler.ClearHandler;
 import Handler.FileHandler;
 import Handler.LoginHandler;
 import Handler.RegisterHandler;
+import com.google.gson.Gson;
 import com.sun.net.httpserver.*;
 
 /*
@@ -111,11 +113,42 @@ public class Server {
 		System.out.println("Server started");
 	}
 
+	private static void storeData() {
+		try {
+			System.out.println("Storing Data");
+
+			Gson gson = new Gson();
+
+			Reader locationReader = new FileReader("json/locations.json");
+			LocationData locData = gson.fromJson(locationReader, LocationData.class);
+			Cache.setLocations(locData);
+
+			Reader mNamesReader = new FileReader("json/mnames.json");
+			MNamesData maleData = gson.fromJson(mNamesReader, MNamesData.class);
+			Cache.setMaleNames(maleData);
+
+			Reader fNamesReader = new FileReader("json/fnames.json");
+			FNamesData femaleData = gson.fromJson(fNamesReader, FNamesData.class);
+			Cache.setFemaleNames(femaleData);
+
+			Reader sNamesReader = new FileReader("json/snames.json");
+			SNamesData surnamesData = gson.fromJson(sNamesReader, SNamesData.class);
+			Cache.setSurnames(surnamesData);
+
+			System.out.println("Data Stored");
+		}
+		catch (FileNotFoundException e) {
+			System.out.println("Unable to Store Data");
+			e.printStackTrace();
+		}
+	}
+
 	// "main" method for the server program
 	// "args" should contain one command-line argument, which is the port number
 	// on which the server should accept incoming client connections.
 	public static void main(String[] args) {		
 		String portNumber = args[0];
+		storeData();
 		new Server().run(portNumber);
 	}
 }
