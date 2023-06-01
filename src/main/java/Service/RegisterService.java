@@ -40,28 +40,41 @@ public class RegisterService {
             UUID personIDUuid = UUID.randomUUID();
             String personID = personIDUuid.toString();
 
-            newUser = new User(r.getUsername(), r.getPassword(), r.getEmail(), r.getFirstName(),
-                    r.getLastName(), r.getGender(), personID);
+            // TODO check that Gender is one letter
+            if (r.getGender().length() == 1) {
+                newUser = new User(r.getUsername(), r.getPassword(), r.getEmail(), r.getFirstName(),
+                        r.getLastName(), r.getGender(), personID);
 
-            aDao = new AuthtokenDao(conn);
-            UUID authtokenUuid = UUID.randomUUID();
-            String authtoken = authtokenUuid.toString();
-            newAuthtoken = new Authtoken(authtoken, r.getUsername());
+                aDao = new AuthtokenDao(conn);
+                UUID authtokenUuid = UUID.randomUUID();
+                String authtoken = authtokenUuid.toString();
+                newAuthtoken = new Authtoken(authtoken, r.getUsername());
 
-            uDao.insertUser(newUser);
-            aDao.insertAuthtoken(newAuthtoken);
-            // TODO create family tree
+                uDao.insertUser(newUser);
+                aDao.insertAuthtoken(newAuthtoken);
+                // TODO create family tree
 
-            db.closeConnection(true);
+                db.closeConnection(true);
 
-            RegisterResult result = new RegisterResult();
+                RegisterResult result = new RegisterResult();
 
-            result.setAuthtoken(authtoken);
-            result.setUsername(r.getUsername());
-            result.setPersonID(personID);
-            result.setSuccess(true);
+                result.setAuthtoken(authtoken);
+                result.setUsername(r.getUsername());
+                result.setPersonID(personID);
+                result.setSuccess(true);
 
-            return result;
+                return result;
+            }
+            else {
+                db.closeConnection(false);
+
+                RegisterResult result = new RegisterResult();
+
+                result.setMessage("Error: Gender can only be one letter");
+                result.setSuccess(false);
+
+                return result;
+            }
         }
         catch (DataAccessException e) {
             e.printStackTrace();
