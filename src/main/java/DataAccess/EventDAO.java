@@ -164,6 +164,80 @@ public class EventDAO {
 
     }
 
+    public int findBirthYear(String personID) throws DataAccessException {
+        String sql = "SELECT year FROM event WHERE personID = ? AND eventType = 'Birth';";
+        ResultSet rs;
+        int birthYear = 0;
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, personID);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                birthYear = rs.getInt("year");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding birth year in the database");
+        }
+
+        return birthYear;
+    }
+
+    public int findDeathYear(String personID) throws DataAccessException {
+        String sql = "SELECT year FROM event WHERE personID = ? AND eventType = 'Death';";
+        ResultSet rs;
+        int deathYear = 0;
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, personID);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                deathYear = rs.getInt("year");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding death year in the database");
+        }
+
+        return deathYear;
+    }
+
+    public void updateBirthByID(String personID, int year) throws DataAccessException {
+        String sql = "UPDATE event SET year = ? WHERE personID = ? AND eventType = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, year);
+            stmt.setString(2, personID);
+            stmt.setString(3, "Birth");
+
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while updating death year");
+        }
+    }
+
+    public void updateDeathByID(String personID, int year) throws DataAccessException {
+        String sql = "UPDATE event SET year = ? WHERE personID = ? AND eventType = ?";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setInt(1, year);
+            stmt.setString(2, personID);
+            stmt.setString(3, "Death");
+
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while updating death year");
+        }
+    }
+
     /**
      * Deletes an event from the database.
      *

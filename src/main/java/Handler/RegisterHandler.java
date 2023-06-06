@@ -28,14 +28,23 @@ public class RegisterHandler implements HttpHandler {
                 RegisterService service = new RegisterService();
                 RegisterResult result = service.register(request);
 
-                exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
-                OutputStream resBody = exchange.getResponseBody();
-                Writer writer = new OutputStreamWriter(resBody);
-                gson.toJson(result, writer);
-                writer.close();
-                resBody.close();
+                if (result.isSuccess()) {
+                    exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+                    OutputStream resBody = exchange.getResponseBody();
+                    Writer writer = new OutputStreamWriter(resBody);
+                    gson.toJson(result, writer);
+                    writer.close();
+                    resBody.close();
 
-                success = true;
+                    success = true;
+                }
+                else {
+                    OutputStream resBody = exchange.getResponseBody();
+                    Writer writer = new OutputStreamWriter(resBody);
+                    gson.toJson(result, writer);
+                    writer.close();
+                    resBody.close();
+                }
             }
 
             if (!success) {

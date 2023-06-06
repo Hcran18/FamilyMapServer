@@ -115,14 +115,60 @@ public class PersonDao {
         return null;
     }
 
+    public String findLastPersonID() throws DataAccessException {
+        String sql = "SELECT personID FROM person ORDER BY personID DESC LIMIT 1";
+        ResultSet rs;
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            rs = stmt.executeQuery();
+            String person = rs.getString("personID");
+            return person;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding the personID of the last person inserted");
+        }
+    }
+
+    public String findLastPersonSpouseID() throws DataAccessException {
+        String sql = "SELECT spouseID FROM person ORDER BY personID DESC LIMIT 1";
+        ResultSet rs;
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            rs = stmt.executeQuery();
+            return rs.getString("spouseID");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding the spouseID of the last person inserted");
+        }
+    }
+
+
     /**
-     * Finds the children of a person.
+     * Finds the child of a person.
      *
      * @param personID the ID of the person to find children for
-     * @return a list of Person objects representing the children
+     * @return a personID representing the child
      */
-    public List<Person> findChildren(String personID) {
-        return Collections.emptyList();
+    public String findChild(String personID) {
+        String childID = null;
+
+        try (PreparedStatement stmt = conn.prepareStatement("SELECT * FROM person WHERE FatherID = ? OR MotherID = ?")) {
+            stmt.setString(1, personID);
+            stmt.setString(2, personID);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    childID = rs.getString("personID");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the exception or rethrow a custom DataAccessException
+        }
+
+        return childID;
     }
 
     /**
