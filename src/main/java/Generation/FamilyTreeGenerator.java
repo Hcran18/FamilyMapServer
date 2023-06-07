@@ -47,6 +47,7 @@ public class FamilyTreeGenerator {
     }
 
     private Person generatePerson(String gender, int generations) throws DataAccessException {
+        //TODO fix the generation of the final person
         Person mother = null;
         Person father = null;
 

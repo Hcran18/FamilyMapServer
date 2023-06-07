@@ -3,6 +3,7 @@ package Service;
 import DataAccess.*;
 import Generation.FamilyTreeGenerator;
 import Result.FillResult;
+import model.User;
 
 import java.sql.Connection;
 
@@ -32,13 +33,15 @@ public class FillService {
             pDao = new PersonDao(conn);
             eDao = new EventDAO(conn);
 
-            // TODO clear persons and events for specific username
+            pDao.clearByUsername(username);
+            eDao.clearByUsername(username);
 
-            // TODO get personID, firstName, lastName, gender of user
-            String personID = null;
-            String firstName = null;
-            String lastName = null;
-            String gender = null;
+            User user = uDao.findByUsername(username);
+
+            String personID = user.getPersonID();
+            String firstName = user.getFirstName();
+            String lastName = user.getLastName();
+            String gender = user.getGender();
 
             FamilyTreeGenerator ft = new FamilyTreeGenerator(generations, personID, username, firstName, lastName, gender, conn);
 
@@ -47,15 +50,18 @@ public class FillService {
             int numPersons = 1;
             int numEvents = 1;
             if (generations > 0) {
-                // TODO get number of people associated with specific username
-                // TODO get number of events associated with specific username
+                numPersons = pDao.getCountByUsername(username);
+                numEvents = numPersons * 3 - 2;
             }
 
             db.closeConnection(true);
 
             FillResult result = new FillResult();
+
             result.setMessage("Successfully added " + numPersons + " persons and " + numEvents + " events to the database.");
             result.setSuccess(true);
+
+            return result;
         }
         catch (DataAccessException e) {
             e.printStackTrace();
@@ -65,7 +71,9 @@ public class FillService {
 
             result.setMessage("Error: Database Connection failed");
             result.setSuccess(false);
+
+            return result;
         }
-        return null;
     }
+
 }

@@ -85,6 +85,26 @@ public class PersonDao {
         }
     }
 
+    public int getCountByUsername(String associatedUsername) throws DataAccessException {
+        String sql = "SELECT COUNT(*) FROM person WHERE associatedUsername = ?";
+        int count = 0;
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, associatedUsername);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    count = rs.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while getting number of people with associatedUsername");
+        }
+
+        return count;
+    }
+
     /**
      * Finds all persons associated with a specific user.
      *
@@ -151,7 +171,7 @@ public class PersonDao {
      * @param personID the ID of the person to find children for
      * @return a personID representing the child
      */
-    public String findChild(String personID) {
+    public String findChild(String personID) throws DataAccessException {
         String childID = null;
 
         try (PreparedStatement stmt = conn.prepareStatement("SELECT * FROM person WHERE FatherID = ? OR MotherID = ?")) {
@@ -165,7 +185,7 @@ public class PersonDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle the exception or rethrow a custom DataAccessException
+            throw new DataAccessException("Error encountered while finding the Child of the given personID");
         }
 
         return childID;
@@ -190,12 +210,21 @@ public class PersonDao {
     }
 
     /**
-     * Deletes a person by their ID.
+     * Clears all person for their associatedUserName.
      *
-     * @param personID the ID of the person to delete
+     * @param username the associatedUsername of the people to delete
      */
-    public void deleteByID(String personID) {
+    public void clearByUsername(String username) throws DataAccessException {
+        String sql = "DELETE FROM person WHERE associatedUsername = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
 
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while clearing people by associatedUsername");
+        }
     }
 
     /**

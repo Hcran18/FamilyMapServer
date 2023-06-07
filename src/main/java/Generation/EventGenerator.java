@@ -212,7 +212,7 @@ public class EventGenerator {
         float longitude = Float.parseFloat(locations.getData()[randomIndex].getLongitude());
         String country = locations.getData()[randomIndex].getCountry();
         String city = locations.getData()[randomIndex].getCity();
-        String eventType = "Marriage";
+        String eventType = "Birth";
 
         Event birth = new Event(generateUniqueID(), associatedUsername, personID, latitude, longitude,
                 country, city, eventType, Calendar.getInstance().get(Calendar.YEAR) - 15);

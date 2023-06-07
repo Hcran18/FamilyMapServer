@@ -248,12 +248,21 @@ public class EventDAO {
     }
 
     /**
-     * Deletes an event by its ID.
+     * Clears all events for their associatedUserName.
      *
-     * @param eventID the ID of the event to delete
+     * @param username the associatedUsername of the events to delete
      */
-    public void deleteEventByID(String eventID) {
+    public void clearByUsername(String username) throws DataAccessException {
+        String sql = "DELETE FROM event WHERE associatedUsername = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, username);
 
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while clearing events by associatedUsername");
+        }
     }
 
     /**
