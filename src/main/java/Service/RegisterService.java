@@ -48,8 +48,8 @@ public class RegisterService {
             UUID personIDUuid = UUID.randomUUID();
             String personID = personIDUuid.toString();
 
-            if (r.getUsername() == null || r.getPassword() == null || r.getEmail() == null || r.getFirstName() == null
-                || r.getLastName() == null || r.getGender() == null) {
+            if (r.getUsername() != null || r.getPassword() != null || r.getEmail() != null || r.getFirstName() != null
+                || r.getLastName() != null || r.getGender() != null) {
                 // Check for if gender is either m or f
                 if (r.getGender().length() == 1 && (Objects.equals(r.getGender(), "m") ||
                         Objects.equals(r.getGender(), "f"))) {
@@ -67,30 +67,11 @@ public class RegisterService {
                     aDao.insertAuthtoken(newAuthtoken);
 
                     // Create and generate a family tree
-                    FamilyTreeGenerator ft = new FamilyTreeGenerator(4, r.getGender(), r.getUsername(), conn);
+                    FamilyTreeGenerator ft = new FamilyTreeGenerator(4, personID, r.getUsername(),
+                            r.getFirstName(), r.getLastName(), r.getGender(), conn);
 
                     ft.generateFamilyTree();
 
-                    // Create a person to add to the person table for the user
-                    pDao = new PersonDao(conn);
-                    Person user = new Person(personID, r.getUsername(), r.getFirstName(), r.getLastName(), r.getGender(),
-                            pDao.findLastPersonID(), pDao.findLastPersonSpouseID(), null);
-
-                    pDao.insertPerson(user);
-
-                    UUID eventUuid = UUID.randomUUID();
-                    String eventID = eventUuid.toString();
-                    int randomIndex = (int) (Math.random() * locations.getData().length);
-                    float latitude = Float.parseFloat(locations.getData()[randomIndex].getLatitude());
-                    float longitude = Float.parseFloat(locations.getData()[randomIndex].getLongitude());
-                    String country = locations.getData()[randomIndex].getCountry();
-                    String city = locations.getData()[randomIndex].getCity();
-
-                    eDao = new EventDAO(conn);
-                    Event birth = new Event(eventID, r.getUsername(), personID, latitude, longitude,
-                            country, city, "Birth", Calendar.getInstance().get(Calendar.YEAR) - 15);
-
-                    eDao.insertEvent(birth);
                     db.closeConnection(true);
 
                     // Return the results of the registration

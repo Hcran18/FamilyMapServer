@@ -2,10 +2,7 @@ import java.io.*;
 import java.net.*;
 
 import FakeFamilyData.*;
-import Handler.ClearHandler;
-import Handler.FileHandler;
-import Handler.LoginHandler;
-import Handler.RegisterHandler;
+import Handler.*;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.*;
 
@@ -87,6 +84,8 @@ public class Server {
 		// "/routes/claim" URL path, it will forward the request to ClaimRouteHandler
 		// for processing.
 		server.createContext("/user/login", new LoginHandler());
+
+		server.createContext("/fill", new FillHandler());
 
 		server.createContext("/clear", new ClearHandler());
 		

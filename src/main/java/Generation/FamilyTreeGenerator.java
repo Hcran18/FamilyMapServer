@@ -14,17 +14,26 @@ public class FamilyTreeGenerator {
     private MNamesData maleNames = Cache.getMaleNames();
     private FNamesData femaleNames = Cache.getFemaleNames();
     private SNamesData surnames = Cache.getSurnames();
-    private String rootGender;
+    private String personID;
     private String associatedUsername;
+    private String firstName;
+    private String lastName;
+    private String rootGender;
+    private String userFather;
+    private String userMother;
     private Connection conn;
     private PersonDao pDao;
     private EventGenerator eventGenerator;
 
-    public FamilyTreeGenerator(int numGenerations, String rootGender, String associatedUsername, Connection conn) {
+    public FamilyTreeGenerator(int numGenerations, String personID, String associatedUsername,
+                               String firstName, String lastName, String rootGender, Connection conn) {
 
         this.numGenerations = numGenerations;
-        this.rootGender = rootGender;
+        this.personID = personID;
         this.associatedUsername = associatedUsername;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.rootGender = rootGender;
         this.conn = conn;
         this.pDao = new PersonDao(conn);
         eventGenerator = new EventGenerator(associatedUsername, conn);
@@ -33,9 +42,11 @@ public class FamilyTreeGenerator {
     public void generateFamilyTree() throws DataAccessException {
         // Call generate person to recursively generate the family tree
         generatePerson(rootGender, numGenerations);
+        generatePersonForUser();
+        eventGenerator.generateMarriageForUser(personID);
     }
 
-    private Person generatePerson(String gender, int generations) {
+    private Person generatePerson(String gender, int generations) throws DataAccessException {
         Person mother = null;
         Person father = null;
 
@@ -49,13 +60,12 @@ public class FamilyTreeGenerator {
 
             eventGenerator.generateMarriageEvents(mother, father);
 
+            userFather = father.getPersonID();
+            userMother = mother.getPersonID();
+
             // As recursion unwinds, insert each person into the person table
-            try {
-                pDao.insertPerson(mother);
-                pDao.insertPerson(father);
-            } catch (DataAccessException e) {
-                e.printStackTrace();
-            }
+            pDao.insertPerson(mother);
+            pDao.insertPerson(father);
         }
 
         // Generate a person and set their information
@@ -83,6 +93,13 @@ public class FamilyTreeGenerator {
         eventGenerator.generateDeathEvent(person);
 
         return person;
+    }
+
+    private void generatePersonForUser() throws DataAccessException {
+        Person user = new Person(personID, associatedUsername, firstName, lastName, rootGender,
+                userFather, userMother, null);
+
+        pDao.insertPerson(user);
     }
 
     private String generateRandomFemaleName() {
