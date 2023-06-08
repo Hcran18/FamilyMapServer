@@ -109,10 +109,37 @@ public class PersonDao {
      * Finds all persons associated with a specific user.
      *
      * @param associatedUsername the associated username
-     * @return a list of Person objects associated with the user
+     * @return an array of Person objects associated with the user
      */
-    public List<Person> findAllForUser(String associatedUsername) {
-        return Collections.emptyList();
+    public Person[] findAllForUser(String associatedUsername) throws DataAccessException {
+        List<Person> persons = new ArrayList<>();
+        ResultSet rs;
+        String sql = "SELECT * FROM person WHERE associatedUsername = ?;";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, associatedUsername);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Person person = new Person(
+                        rs.getString("personID"),
+                        rs.getString("associatedUsername"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName"),
+                        rs.getString("gender"),
+                        rs.getString("fatherID"),
+                        rs.getString("motherID"),
+                        rs.getString("spouseID")
+                );
+                persons.add(person);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding persons in the database for a user");
+        }
+
+        return persons.toArray(new Person[0]);
     }
 
     /**

@@ -49,8 +49,27 @@ public class AuthtokenDao {
      * @param authtoken the token value of the authtoken to find
      * @return the found Authtoken object, or null if not found
      */
-    public Authtoken findByAuthtoken(String authtoken) {
-        return null;
+    public Authtoken findByAuthtoken(String authtoken) throws DataAccessException {
+        Authtoken user;
+        ResultSet rs;
+        String sql = "SELECT * FROM auth_token WHERE authtoken = ?;";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, authtoken);
+            rs = stmt.executeQuery();
+
+            if(rs.next()) {
+                user = new Authtoken(rs.getString("authtoken"), rs.getString("username"));
+                return user;
+            }
+            else {
+                return null;
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding an authtoken in the database by username");
+        }
     }
 
     /**
