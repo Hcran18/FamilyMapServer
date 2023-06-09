@@ -3,25 +3,28 @@ package Handler;
 import DataAccess.AuthtokenDao;
 import DataAccess.DataAccessException;
 import DataAccess.Database;
-import Result.PersonResult;
-import Result.Person_PersonIDResult;
-import Service.PersonService;
-import Service.Person_PersonIDService;
+import Result.EventResult;
+import Result.Event_EventIDResult;
+import Service.EventService;
+import Service.Event_EventIDService;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import model.Authtoken;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.sql.Connection;
 
-public class PersonHandler implements HttpHandler {
+public class EventHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
         boolean success = false;
-        String personID = null;
+        String eventID = null;
 
         try {
             if (exchange.getRequestMethod().toLowerCase().equals("get")) {
@@ -47,10 +50,10 @@ public class PersonHandler implements HttpHandler {
                             String[] pathParts = path.split("/");
 
                             if (pathParts.length >= 3) {
-                                personID = pathParts[2];
+                                eventID = pathParts[2];
 
-                                Person_PersonIDService service = new Person_PersonIDService();
-                                Person_PersonIDResult result = service.person_personID(username, personID);
+                                Event_EventIDService service = new Event_EventIDService();
+                                Event_EventIDResult result = service.event_eventID(username, eventID);
 
                                 Gson gson = new Gson();
                                 exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
@@ -63,8 +66,8 @@ public class PersonHandler implements HttpHandler {
                                 success = true;
                             }
                             else {
-                                PersonService service = new PersonService();
-                                PersonResult result = service.persons(username);
+                                EventService service = new EventService();
+                                EventResult result = service.events(username);
 
                                 Gson gson = new Gson();
                                 exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);

@@ -1,6 +1,7 @@
 package DataAccess;
 
 import model.Event;
+import model.Person;
 
 import java.sql.*;
 import java.util.*;
@@ -87,11 +88,39 @@ public class EventDAO {
     /**
      * Finds all events associated with a specific user.
      *
-     * @param username the username of the user
+     * @param associatedUsername the username of the user
      * @return a list of Event objects associated with the user
      */
-    public List<Event> findAllForUser(String username) {
-        return Collections.emptyList();
+    public Event[] findAllForUser(String associatedUsername) throws DataAccessException {
+        List<Event> events = new ArrayList<>();
+        ResultSet rs;
+        String sql = "SELECT * FROM event WHERE associatedUsername = ?;";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)){
+            stmt.setString(1, associatedUsername);
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Event event = new Event(
+                        rs.getString("eventID"),
+                        rs.getString("associatedUsername"),
+                        rs.getString("personID"),
+                        rs.getFloat("latitude"),
+                        rs.getFloat("longitude"),
+                        rs.getString("country"),
+                        rs.getString("city"),
+                        rs.getString("eventType"),
+                        rs.getInt("year")
+                );
+                events.add(event);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            throw new DataAccessException("Error encountered while finding events in the database for a user");
+        }
+
+        return events.toArray(new Event[0]);
     }
 
     /**

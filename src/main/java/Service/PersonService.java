@@ -31,6 +31,8 @@ public class PersonService {
 
             pDao = new PersonDao(conn);
 
+            db.closeConnection(true);
+
             persons = pDao.findAllForUser(username);
 
             PersonResult result = new PersonResult();

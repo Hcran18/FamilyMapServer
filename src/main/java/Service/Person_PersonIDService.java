@@ -51,6 +51,7 @@ public class Person_PersonIDService {
                 return result;
             }
             else {
+                db.closeConnection(false);
                 Person_PersonIDResult result = new Person_PersonIDResult();
 
                 result.setMessage("Error: Requested person does not belong to this user");
