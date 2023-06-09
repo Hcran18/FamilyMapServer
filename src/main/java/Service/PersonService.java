@@ -7,7 +7,6 @@ import Result.PersonResult;
 import model.Person;
 
 import java.sql.Connection;
-import java.util.Objects;
 
 /**
  * Service class that handles the retrieval of person data.
