@@ -1,17 +1,16 @@
 package Handler;
 
-import Request.LoginRequest;
-import Result.LoginResult;
-import Service.LoginService;
-import com.sun.net.httpserver.Headers;
+import Request.LoadRequest;
+import Result.LoadResult;
+import Service.LoadService;
+import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import com.google.gson.*;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 
-public class LoginHandler implements HttpHandler {
+public class LoadHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
 
@@ -22,10 +21,10 @@ public class LoginHandler implements HttpHandler {
                 String reqData = readString(reqBody);
 
                 Gson gson = new Gson();
-                LoginRequest request = gson.fromJson(reqData, LoginRequest.class);
+                LoadRequest request = gson.fromJson(reqData, LoadRequest.class);
 
-                LoginService service = new LoginService();
-                LoginResult result = service.login(request);
+                LoadService service = new LoadService();
+                LoadResult result = service.load(request);
 
                 if (result.isSuccess()) {
                     exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);

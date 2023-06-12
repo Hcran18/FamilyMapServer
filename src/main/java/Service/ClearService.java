@@ -2,8 +2,6 @@ package Service;
 
 import DataAccess.*;
 import Result.ClearResult;
-import Result.RegisterResult;
-import model.Event;
 
 import java.sql.Connection;
 

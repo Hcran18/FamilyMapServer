@@ -20,7 +20,6 @@ import java.sql.Connection;
 public class PersonHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        boolean success = false;
         String personID = null;
 
         try {
@@ -53,34 +52,55 @@ public class PersonHandler implements HttpHandler {
                                 Person_PersonIDResult result = service.person_personID(username, personID);
 
                                 Gson gson = new Gson();
-                                exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+
+                                if (result.isSuccess()){
+                                    exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+                                }
+                                else {
+                                    exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
+                                }
+
                                 OutputStream resBody = exchange.getResponseBody();
                                 Writer writer = new OutputStreamWriter(resBody);
                                 gson.toJson(result, writer);
                                 writer.close();
                                 resBody.close();
 
-                                success = true;
                             }
                             else {
                                 PersonService service = new PersonService();
                                 PersonResult result = service.persons(username);
 
                                 Gson gson = new Gson();
-                                exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+
+                                if (result.isSuccess()){
+                                    exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+                                }
+                                else {
+                                    exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
+                                }
+
                                 OutputStream resBody = exchange.getResponseBody();
                                 Writer writer = new OutputStreamWriter(resBody);
                                 gson.toJson(result, writer);
                                 writer.close();
                                 resBody.close();
 
-                                success = true;
                             }
                         }
-
-                        if (!success) {
+                        else {
                             exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
-                            exchange.getResponseBody().close();
+
+                            PersonResult result = new PersonResult();
+                            result.setMessage("Error: Incorrect Authtoken");
+                            result.setSuccess(false);
+
+                            Gson gson = new Gson();
+                            OutputStream resBody = exchange.getResponseBody();
+                            Writer writer = new OutputStreamWriter(resBody);
+                            gson.toJson(result, writer);
+                            writer.close();
+                            resBody.close();
                         }
                     }
                     catch (DataAccessException e) {

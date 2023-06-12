@@ -13,7 +13,6 @@ import java.net.HttpURLConnection;
 public class FillHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        boolean success = false;
         String username = null;
         int generations = 4;
 
@@ -34,20 +33,21 @@ public class FillHandler implements HttpHandler {
                     FillResult result = service.fill(username, generations);
 
                     Gson gson = new Gson();
-                    exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+
+                    if (result.isSuccess()) {
+                        exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
+                    }
+                    else {
+                        exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
+                    }
+
                     OutputStream resBody = exchange.getResponseBody();
                     Writer writer = new OutputStreamWriter(resBody);
                     gson.toJson(result, writer);
                     writer.close();
                     resBody.close();
 
-                    success = true;
                 }
-            }
-
-            if (!success) {
-                exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
-                exchange.getResponseBody().close();
             }
         }
         catch (IOException e) {
@@ -55,17 +55,5 @@ public class FillHandler implements HttpHandler {
             exchange.getResponseBody().close();
             e.printStackTrace();
         }
-    }
-
-    private String readString(InputStream is) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        InputStreamReader sr = new InputStreamReader(is);
-
-        char[] buf = new char[1024];
-        int length;
-        while ((length = sr.read(buf)) > 0) {
-            sb.append(buf, 0, length);
-        }
-        return sb.toString();
     }
 }

@@ -7,6 +7,7 @@ import Result.Event_EventIDResult;
 import model.Event;
 
 import java.sql.Connection;
+import java.util.Objects;
 
 /**
  * Service class that handles the retrieval of an event by its ID.
@@ -31,7 +32,9 @@ public class Event_EventIDService {
 
             event = eDao.findByID(eventID);
 
-            if (event.getAssociatedUsername() != username) {
+            String eventUser = event.getAssociatedUsername();
+
+            if (Objects.equals(eventUser, username)) {
                 Event_EventIDResult result = new Event_EventIDResult();
 
                 result.setAssociatedUsername(username);

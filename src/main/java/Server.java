@@ -92,6 +92,8 @@ public class Server {
 		server.createContext("/person", new PersonHandler());
 
 		server.createContext("/event", new EventHandler());
+
+		server.createContext("/load", new LoadHandler());
 		// Create and install the "default" (or "file") HTTP handler.
 		// All requests that do not match the other handler URLs
 		// will be passed to this handle.

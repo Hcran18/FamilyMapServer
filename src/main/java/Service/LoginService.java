@@ -6,6 +6,7 @@ import DataAccess.Database;
 import DataAccess.UserDao;
 import Request.LoginRequest;
 import Result.LoginResult;
+import model.Authtoken;
 import model.User;
 
 import java.sql.Connection;
@@ -37,31 +38,44 @@ public class LoginService {
 
             foundUser = uDao.findByUsername(username);
 
-            LoginResult result = new LoginResult();
+            aDao = new AuthtokenDao(conn);
 
-            if (foundUser != null) {
-                if (r.getPassword().equals(foundUser.getPassword())) {
-                    aDao = new AuthtokenDao(conn);
+            Authtoken userAuthtoken = aDao.findByUsername(username);
 
-                    result.setAuthtoken(aDao.findByUsername(username).getAuthtoken());
-                    result.setUsername(foundUser.getUsername());
-                    result.setPersonID(foundUser.getPersonID());
-                    result.setSuccess(true);
-                }
-                else {
-                    result.setMessage("Error: Password is incorrect");
+            if (userAuthtoken != null) {
+                String authtoken = userAuthtoken.getAuthtoken();
+
+                LoginResult result = new LoginResult();
+
+                if (foundUser != null) {
+                    if (r.getPassword().equals(foundUser.getPassword())) {
+
+                        result.setAuthtoken(authtoken);
+                        result.setUsername(foundUser.getUsername());
+                        result.setPersonID(foundUser.getPersonID());
+                        result.setSuccess(true);
+                    } else {
+                        result.setMessage("Error: Password is incorrect");
+                        result.setSuccess(false);
+                    }
+
+                    db.closeConnection(true);
+
+                    return result;
+                } else {
+                    result.setMessage("Error: User does not exist");
                     result.setSuccess(false);
+
+                    db.closeConnection(true);
+                    return result;
                 }
-
-                db.closeConnection(true);
-
-                return result;
             }
             else {
-                result.setMessage("Error: User does not exist");
+                LoginResult result = new LoginResult();
+                result.setMessage("Error: Invalid login attempt");
                 result.setSuccess(false);
 
-                db.closeConnection(true);
+                db.closeConnection(false);
                 return result;
             }
         }

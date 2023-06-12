@@ -14,7 +14,6 @@ import java.net.HttpURLConnection;
 public class RegisterHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange exchange) throws IOException {
-        boolean success = false;
 
         try {
             if (exchange.getRequestMethod().toLowerCase().equals("post")) {
@@ -36,20 +35,15 @@ public class RegisterHandler implements HttpHandler {
                     writer.close();
                     resBody.close();
 
-                    success = true;
                 }
                 else {
+                    exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
                     OutputStream resBody = exchange.getResponseBody();
                     Writer writer = new OutputStreamWriter(resBody);
                     gson.toJson(result, writer);
                     writer.close();
                     resBody.close();
                 }
-            }
-
-            if (!success) {
-                exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
-                exchange.getResponseBody().close();
             }
         }
         catch (IOException e) {

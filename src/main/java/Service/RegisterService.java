@@ -1,17 +1,12 @@
 package Service;
 
 import DataAccess.*;
-import FakeFamilyData.Cache;
-import FakeFamilyData.LocationData;
 import Generation.FamilyTreeGenerator;
 import Request.RegisterRequest;
 import Result.RegisterResult;
 import model.Authtoken;
-import model.Event;
-import model.Person;
 import model.User;
 
-import java.util.Calendar;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -25,10 +20,7 @@ public class RegisterService {
     private User newUser;
     private Authtoken newAuthtoken;
     private UserDao uDao;
-    private PersonDao pDao;
     private AuthtokenDao aDao;
-    private EventDAO eDao;
-    private LocationData locations = Cache.getLocations();
     /**
      * Registers a new user based on the provided registration request.
      *

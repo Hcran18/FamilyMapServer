@@ -147,6 +147,7 @@ public class EventGenerator {
             year = 1500 + random.nextInt(Calendar.getInstance().get(Calendar.YEAR) - 1530);
         }
 
+        //TODO Make sure that this works
         // If female then make sure they cannot have children over the age of 50
         if (person.getGender().equals("f")) {
             int maxChildBearingYear = 50;
@@ -207,6 +208,23 @@ public class EventGenerator {
     }
 
     public void generateMarriageForUser(String personID) throws DataAccessException {
+        Person user = pDao.findByID(personID);
+
+        String motherID = user.getMotherID();
+        int motherBirthYear = eDao.findBirthYear(motherID);
+        int motherYearAge50 = motherBirthYear + 50;
+
+        String fatherID = user.getFatherID();
+        int fatherBirthYear = eDao.findBirthYear(fatherID);
+        int fatherYearAge13 = fatherBirthYear + 13;
+
+        Random random = new Random();
+        int year;
+
+        do {
+            year = random.nextInt(motherYearAge50 - fatherYearAge13 + 1) + fatherYearAge13;
+        } while (year <= motherBirthYear + 13);
+
         int randomIndex = (int) (Math.random() * locations.getData().length);
         float latitude = Float.parseFloat(locations.getData()[randomIndex].getLatitude());
         float longitude = Float.parseFloat(locations.getData()[randomIndex].getLongitude());
@@ -215,7 +233,7 @@ public class EventGenerator {
         String eventType = "Birth";
 
         Event birth = new Event(generateUniqueID(), associatedUsername, personID, latitude, longitude,
-                country, city, eventType, Calendar.getInstance().get(Calendar.YEAR) - 15);
+                country, city, eventType, year);
 
         eDao.insertEvent(birth);
     }

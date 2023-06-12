@@ -33,7 +33,9 @@ public class Person_PersonIDService {
 
             person = pDao.findByID(personID);
 
-            if (person.getAssociatedUsername() != username) {
+            String user = person.getAssociatedUsername();
+
+            if (Objects.equals(user, username)) {
                 Person_PersonIDResult result = new Person_PersonIDResult();
 
                 result.setPersonID(personID);
