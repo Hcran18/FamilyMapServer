@@ -13,13 +13,41 @@ import java.util.Calendar;
 import java.util.Random;
 import java.util.UUID;
 
+/**
+ * The EventGenerator class is responsible for generating various events
+ */
 public class EventGenerator {
+    /**
+     * The LocationData object containing location information for event generation.
+     */
     private LocationData locations = Cache.getLocations();
+
+    /**
+     * The associated username for the events.
+     */
     private String associatedUsername;
+
+    /**
+     * The connection object used for database operations.
+     */
     private Connection conn;
+
+    /**
+     * The PersonDao object for accessing and manipulating person data.
+     */
     private PersonDao pDao;
+
+    /**
+     * The EventDAO object for accessing and manipulating event data.
+     */
     private EventDAO eDao;
 
+    /**
+     * Constructs an EventGenerator object with the specified associated username and database connection.
+     *
+     * @param associatedUsername The associated username for the events.
+     * @param conn The database connection.
+     */
     public EventGenerator(String associatedUsername, Connection conn) {
         this.associatedUsername = associatedUsername;
         this.conn = conn;
@@ -27,9 +55,14 @@ public class EventGenerator {
         this.eDao = new EventDAO(conn);
     }
 
+    /**
+     * Generates marriage events for the given mother and father.
+     *
+     * @param mother The mother person object.
+     * @param father The father person object.
+     * @throws DataAccessException If there is an error accessing the data.
+     */
     public void generateMarriageEvents(Person mother, Person father) throws DataAccessException {
-
-
         // Randomly generate the location of the event
         int randomIndex = (int) (Math.random() * locations.getData().length);
         float latitude = Float.parseFloat(locations.getData()[randomIndex].getLatitude());
@@ -124,6 +157,12 @@ public class EventGenerator {
         eDao.insertEvent(marriageFather);
     }
 
+    /**
+     * Generates a birth event for the given person.
+     *
+     * @param person The person object for whom to generate the birth event.
+     * @throws DataAccessException If there is an error accessing the data.
+     */
     public void generateBirthEvent(Person person) throws DataAccessException {
         // Randomly generate the location of the event
         int randomIndex = (int) (Math.random() * locations.getData().length);
@@ -165,6 +204,12 @@ public class EventGenerator {
         eDao.insertEvent(birth);
     }
 
+    /**
+     * Generates a death event for the given person.
+     *
+     * @param person The person object for whom to generate the death event.
+     * @throws DataAccessException If there is an error accessing the data.
+     */
     public void generateDeathEvent(Person person) throws DataAccessException {
         // Randomly generate the location of the event
         int randomIndex = (int) (Math.random() * locations.getData().length);
@@ -207,7 +252,13 @@ public class EventGenerator {
         eDao.insertEvent(death);
     }
 
-    public void generateMarriageForUser(String personID) throws DataAccessException {
+    /**
+     * Generates a Birth event for the user based on the parents' information.
+     *
+     * @param personID The ID of the user (child) for whom to generate the marriage event.
+     * @throws DataAccessException If there is an error accessing the data.
+     */
+    public void generateBirthForUser(String personID) throws DataAccessException {
         Person user = pDao.findByID(personID);
 
         String motherID = user.getMotherID();
@@ -238,6 +289,11 @@ public class EventGenerator {
         eDao.insertEvent(birth);
     }
 
+    /**
+     * Generates a unique ID for events.
+     *
+     * @return A unique ID string.
+     */
     private String generateUniqueID() {
         return UUID.randomUUID().toString();
     }
