@@ -15,10 +15,26 @@ import java.sql.Connection;
  * Service class that handles the login operation.
  */
 public class LoginService {
+    /**
+     * The Database object used for accessing the database.
+     */
     private Database db;
+
+    /**
+     * The User object representing the found user during the login process.
+     */
     private User foundUser;
+
+    /**
+     * The UserDao object used for accessing the user data in the database.
+     */
     private UserDao uDao;
+
+    /**
+     * The AuthtokenDao object used for accessing the authtoken data in the database.
+     */
     private AuthtokenDao aDao;
+
     /**
      * Authenticates the user login based on the provided login request.
      *

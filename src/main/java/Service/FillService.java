@@ -12,10 +12,26 @@ import java.sql.Connection;
  * Service class that handles the fill operation.
  */
 public class FillService {
+    /**
+     * The Database object used for accessing the database.
+     */
     private Database db;
+
+    /**
+     * The UserDao object used for accessing the user data in the database.
+     */
     private UserDao uDao;
+
+    /**
+     * The PersonDao object used for accessing the person data in the database.
+     */
     private PersonDao pDao;
+
+    /**
+     * The EventDao object used for accessing the event data in the database.
+     */
     private EventDAO eDao;
+
     /**
      * Fills the database with generated data.
      *

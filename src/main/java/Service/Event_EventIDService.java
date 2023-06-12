@@ -13,9 +13,21 @@ import java.util.Objects;
  * Service class that handles the retrieval of an event by its ID.
  */
 public class Event_EventIDService {
+    /**
+     * The Database object used for accessing the database.
+     */
     private Database db;
+
+    /**
+     * The EventDao object used for accessing the event data in the database.
+     */
     private EventDAO eDao;
+
+    /**
+     * The Event object representing the retrieved event.
+     */
     private Event event;
+
     /**
      * Retrieves the event details for a specific event ID.
      *

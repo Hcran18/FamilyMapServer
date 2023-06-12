@@ -16,10 +16,29 @@ import java.sql.Connection;
  * Service class that handles the registration operation.
  */
 public class RegisterService {
+    /**
+     * The Database object used for accessing the database.
+     */
     private Database db;
+
+    /**
+     * The User object representing the newly registered user.
+     */
     private User newUser;
+
+    /**
+     * The Authtoken object representing the newly generated authentication token for the user.
+     */
     private Authtoken newAuthtoken;
+
+    /**
+     * The UserDao object used for accessing the user data in the database.
+     */
     private UserDao uDao;
+
+    /**
+     * The AuthtokenDao object used for accessing the authtoken data in the database.
+     */
     private AuthtokenDao aDao;
     /**
      * Registers a new user based on the provided registration request.
@@ -27,6 +46,7 @@ public class RegisterService {
      * @param r The registration request containing the user details.
      * @return The result of the registration operation.
      */
+
     public RegisterResult register(RegisterRequest r) {
         db = new Database();
 

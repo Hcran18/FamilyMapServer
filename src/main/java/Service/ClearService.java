@@ -9,10 +9,29 @@ import java.sql.Connection;
  * Service class that handles the clear operation.
  */
 public class ClearService {
+    /**
+     * The Database object used for accessing the database.
+     */
     private Database db;
+
+    /**
+     * The UserDao object used for accessing the user data in the database.
+     */
     private UserDao uDao;
+
+    /**
+     * The PersonDao object used for accessing the person data in the database.
+     */
     private PersonDao pDao;
+
+    /**
+     * The AuthtokenDao object used for accessing the authtoken data in the database.
+     */
     private AuthtokenDao aDao;
+
+    /**
+     * The EventDAO object used for accessing the event data in the database.
+     */
     private EventDAO eDAO;
 
     /**

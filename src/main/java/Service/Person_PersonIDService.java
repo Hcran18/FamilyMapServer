@@ -14,9 +14,21 @@ import java.util.Objects;
  * Service class that handles the retrieval of a specific person by ID.
  */
 public class Person_PersonIDService {
+    /**
+     * The Database object used for accessing the database.
+     */
     private Database db;
+
+    /**
+     * The PersonDao object used for accessing the person data in the database.
+     */
     private PersonDao pDao;
+
+    /**
+     * The Person object representing the retrieved person data.
+     */
     private Person person;
+
     /**
      * Retrieves a specific person by ID.
      *

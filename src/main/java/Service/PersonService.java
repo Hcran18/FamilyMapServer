@@ -12,8 +12,19 @@ import java.sql.Connection;
  * Service class that handles the retrieval of person data.
  */
 public class PersonService {
+    /**
+     * The Database object used for accessing the database.
+     */
     private Database db;
+
+    /**
+     * The PersonDao object used for accessing the person data in the database.
+     */
     private PersonDao pDao;
+
+    /**
+     * An array of Person objects representing the retrieved person data.
+     */
     private Person[] persons;
 
     /**

@@ -12,9 +12,21 @@ import java.sql.Connection;
  * Service class that handles the retrieval of events.
  */
 public class EventService {
+    /**
+     * The Database object used for accessing the database.
+     */
     private Database db;
+
+    /**
+     * The EventDao object used for accessing the event data in the database.
+     */
     private EventDAO eDao;
+
+    /**
+     * An array of events retrieved from the database.
+     */
     private Event[] events;
+
     /**
      * Retrieves the events.
      *
