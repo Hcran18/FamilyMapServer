@@ -145,6 +145,7 @@ public class EventDAO {
         return birthYear;
     }
 
+    // TODO JavaDoc
     public int findDeathYear(String personID) throws DataAccessException {
         String sql = "SELECT year FROM event WHERE personID = ? AND eventType = 'Death';";
         ResultSet rs;
@@ -166,6 +167,7 @@ public class EventDAO {
         return deathYear;
     }
 
+    // TODO JavaDoc
     public void updateBirthByID(String personID, int year) throws DataAccessException {
         String sql = "UPDATE event SET year = ? WHERE personID = ? AND eventType = ?";
 
@@ -182,6 +184,7 @@ public class EventDAO {
         }
     }
 
+    // TODO JavaDoc
     public void updateDeathByID(String personID, int year) throws DataAccessException {
         String sql = "UPDATE event SET year = ? WHERE personID = ? AND eventType = ?";
 
