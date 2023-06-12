@@ -101,6 +101,7 @@ public class EventHandler implements HttpHandler {
                             }
                         }
                         else {
+                            db.closeConnection(false);
                             exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
 
                             EventResult result = new EventResult();

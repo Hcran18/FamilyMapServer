@@ -46,7 +46,6 @@ public class EventService {
             db.closeConnection(true);
 
             EventResult result = new EventResult();
-
             result.setData(events);
             result.setSuccess(true);
 

@@ -95,7 +95,8 @@ public class RegisterService {
                     result.setSuccess(true);
 
                     return result;
-                } else {
+                }
+                else {
                     db.closeConnection(false);
 
                     RegisterResult result = new RegisterResult();

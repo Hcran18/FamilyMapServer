@@ -98,6 +98,8 @@ public class PersonHandler implements HttpHandler {
                             }
                         }
                         else {
+                            db.closeConnection(false);
+
                             exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
 
                             PersonResult result = new PersonResult();

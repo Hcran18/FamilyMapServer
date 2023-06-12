@@ -19,7 +19,7 @@ public class LoginServiceTest {
     private static Database db = new Database();
 
     @BeforeAll
-    public static void beforeAllSetUp() throws DataAccessException {
+    public static void beforeAllSetUp() {
 
         try {
             db.openConnection();
@@ -46,7 +46,7 @@ public class LoginServiceTest {
     }
 
     @AfterAll
-    public static void tearDown() throws DataAccessException {
+    public static void tearDown() {
         try {
             db.openConnection();
             Connection conn = db.getConnection();
@@ -64,7 +64,6 @@ public class LoginServiceTest {
             e.printStackTrace();
             db.closeConnection(false);
         }
-
     }
 
     @BeforeEach

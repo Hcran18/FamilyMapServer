@@ -82,7 +82,7 @@ public class LoginService {
                     result.setMessage("Error: User does not exist");
                     result.setSuccess(false);
 
-                    db.closeConnection(true);
+                    db.closeConnection(false);
                     return result;
                 }
             }
