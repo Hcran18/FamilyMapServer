@@ -85,7 +85,13 @@ public class PersonDao {
         }
     }
 
-    // TODO JavaDoc
+    /**
+     * Retrieves the count of people in the database with the given associated username.
+     *
+     * @param associatedUsername the associated username to search for
+     * @return the count of people with the associated username
+     * @throws DataAccessException if an error occurs while retrieving the count from the database
+     */
     public int getCountByUsername(String associatedUsername) throws DataAccessException {
         String sql = "SELECT COUNT(*) FROM person WHERE associatedUsername = ?";
         int count = 0;

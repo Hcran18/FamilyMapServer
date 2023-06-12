@@ -119,7 +119,12 @@ public class AuthtokenDao {
         }
     }
 
-    // TODO JavaDoc
+    /**
+     * Deletes authtokens associated with the given username.
+     *
+     * @param username the associated username
+     * @throws DataAccessException if an error occurs while deleting the authtoken from the database
+     */
     public void deleteByUsername(String username) throws DataAccessException {
         String sql = "DELETE FROM auth_token WHERE username = ?;";
 

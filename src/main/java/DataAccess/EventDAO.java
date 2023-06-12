@@ -123,7 +123,13 @@ public class EventDAO {
         return events.toArray(new Event[0]);
     }
 
-    // TODO JavaDoc
+    /**
+     * Finds the birth year of a person with the given person ID.
+     *
+     * @param personID the person ID to search for
+     * @return the birth year of the person, or 0 if not found
+     * @throws DataAccessException if an error occurs while finding the birth year in the database
+     */
     public int findBirthYear(String personID) throws DataAccessException {
         String sql = "SELECT year FROM event WHERE personID = ? AND eventType = 'Birth';";
         ResultSet rs;
@@ -145,7 +151,13 @@ public class EventDAO {
         return birthYear;
     }
 
-    // TODO JavaDoc
+    /**
+     * Finds the death year of a person with the given person ID.
+     *
+     * @param personID the person ID to search for
+     * @return the death year of the person, or 0 if not found
+     * @throws DataAccessException if an error occurs while finding the death year in the database
+     */
     public int findDeathYear(String personID) throws DataAccessException {
         String sql = "SELECT year FROM event WHERE personID = ? AND eventType = 'Death';";
         ResultSet rs;
@@ -167,7 +179,13 @@ public class EventDAO {
         return deathYear;
     }
 
-    // TODO JavaDoc
+    /**
+     * Updates the birth year of a person with the given person ID.
+     *
+     * @param personID the person ID to update
+     * @param year the new birth year
+     * @throws DataAccessException if an error occurs while updating the birth year in the database
+     */
     public void updateBirthByID(String personID, int year) throws DataAccessException {
         String sql = "UPDATE event SET year = ? WHERE personID = ? AND eventType = ?";
 
@@ -184,7 +202,13 @@ public class EventDAO {
         }
     }
 
-    // TODO JavaDoc
+    /**
+     * Updates the death year of a person with the given person ID.
+     *
+     * @param personID the person ID to update
+     * @param year the new death year
+     * @throws DataAccessException if an error occurs while updating the death year in the database
+     */
     public void updateDeathByID(String personID, int year) throws DataAccessException {
         String sql = "UPDATE event SET year = ? WHERE personID = ? AND eventType = ?";
 
