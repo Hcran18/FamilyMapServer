@@ -102,24 +102,6 @@ public class AuthtokenDao {
     }
 
     /**
-     * Updates an existing authtoken in the database.
-     *
-     * @param authtoken the authtoken to update
-     */
-    public void updateAuthtoken(Authtoken authtoken) {
-
-    }
-
-    /**
-     * Deletes an authtoken from the database.
-     *
-     * @param authtoken the authtoken to delete
-     */
-    public void deleteAuthtoken(Authtoken authtoken) {
-
-    }
-
-    /**
      * Deletes an authtoken by its token value.
      *
      * @param authtoken the token value of the authtoken to delete
@@ -137,6 +119,7 @@ public class AuthtokenDao {
         }
     }
 
+    // TODO JavaDoc
     public void deleteByUsername(String username) throws DataAccessException {
         String sql = "DELETE FROM auth_token WHERE username = ?;";
 

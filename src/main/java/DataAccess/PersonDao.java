@@ -56,7 +56,7 @@ public class PersonDao {
      * Finds a person by their ID.
      *
      * @param personID the ID of the person to find
-     *                 @throws DataAccessException if an error occurs while finding the Person by ID
+     * @throws DataAccessException if an error occurs while finding the Person by ID
      * @return the found Person object, or null if not found
      */
     public Person findByID(String personID) throws DataAccessException {
@@ -85,6 +85,7 @@ public class PersonDao {
         }
     }
 
+    // TODO JavaDoc
     public int getCountByUsername(String associatedUsername) throws DataAccessException {
         String sql = "SELECT COUNT(*) FROM person WHERE associatedUsername = ?";
         int count = 0;
@@ -143,56 +144,6 @@ public class PersonDao {
     }
 
     /**
-     * Finds the parents of a person.
-     *
-     * @param personID the ID of the person to find parents for
-     * @return a list of Person objects representing the parents
-     */
-    public List<Person> findParents(String personID) {
-        return Collections.emptyList();
-    }
-
-    /**
-     * Finds the spouse of a person.
-     *
-     * @param personID the ID of the person to find spouse for
-     * @return the found Person object representing the spouse, or null if not found
-     */
-    public Person findSpouse(String personID) {
-        return null;
-    }
-
-    public String findLastPersonID() throws DataAccessException {
-        String sql = "SELECT personID FROM person ORDER BY personID DESC LIMIT 1";
-        ResultSet rs;
-
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            rs = stmt.executeQuery();
-            String person = rs.getString("personID");
-            return person;
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            throw new DataAccessException("Error encountered while finding the personID of the last person inserted");
-        }
-    }
-
-    public String findLastPersonSpouseID() throws DataAccessException {
-        String sql = "SELECT spouseID FROM person ORDER BY personID DESC LIMIT 1";
-        ResultSet rs;
-
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            rs = stmt.executeQuery();
-            return rs.getString("spouseID");
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            throw new DataAccessException("Error encountered while finding the spouseID of the last person inserted");
-        }
-    }
-
-
-    /**
      * Finds the child of a person.
      *
      * @param personID the ID of the person to find children for
@@ -216,24 +167,6 @@ public class PersonDao {
         }
 
         return childID;
-    }
-
-    /**
-     * Updates an existing person in the database.
-     *
-     * @param person the person to update
-     */
-    public void update(Person person) {
-
-    }
-
-    /**
-     * Deletes a person from the database.
-     *
-     * @param person the person to delete
-     */
-    public void delete(Person person) {
-
     }
 
     /**

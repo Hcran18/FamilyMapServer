@@ -50,39 +50,6 @@ public class UserDao {
     }
 
     /**
-     * Finds a user by their ID.
-     *
-     * @param personID the ID of the user to find
-     * @throws DataAccessException if an error occurs while finding the User by ID
-     * @return the found User object, or null if not found
-     */
-    public User findByID(String personID) throws DataAccessException {
-        User user;
-        ResultSet rs;
-        String sql = "SELECT * FROM user WHERE personID = ?;";
-
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, personID);
-            rs = stmt.executeQuery();
-
-            if(rs.next()) {
-                user = new User(rs.getString("username"), rs.getString("password"),
-                        rs.getString("email"), rs.getString("firstName"),
-                        rs.getString("lastName"), rs.getString("gender"),
-                        rs.getString("personID"));
-                return user;
-            }
-            else {
-                return null;
-            }
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            throw new DataAccessException("Error encountered while finding a User in the database by personID");
-        }
-    }
-
-    /**
      * Finds a user by their username.
      *
      * @param username the username of the user to find
@@ -115,36 +82,6 @@ public class UserDao {
     }
 
     /**
-     * Finds a user by their email.
-     *
-     * @param email the email of the user to find
-     * @return the found User object, or null if not found
-     */
-    public User findByEmail(String email) {
-        return null;
-    }
-
-    /**
-     * Finds a user by their full name.
-     *
-     * @param firstName the first name of the user to find
-     * @param lastName  the last name of the user to find
-     * @return the found User object, or null if not found
-     */
-    public User findByFullName(String firstName, String lastName) {
-        return null;
-    }
-
-    /**
-     * Updates an existing user in the database.
-     *
-     * @param user the user to update
-     */
-    public void updateUser(User user) {
-
-    }
-
-    /**
      * Deletes a user from the database.
      *
      * @param username the user to delete
@@ -160,15 +97,6 @@ public class UserDao {
             e.printStackTrace();
             throw new DataAccessException("Error encountered while deleting a User in the database by username");
         }
-    }
-
-    /**
-     * Deletes a user by their ID.
-     *
-     * @param personID the ID of the user to delete
-     */
-    public void deleteByID(String personID) {
-
     }
 
     /**

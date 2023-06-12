@@ -89,7 +89,7 @@ public class EventDAO {
      * Finds all events associated with a specific user.
      *
      * @param associatedUsername the username of the user
-     * @return a list of Event objects associated with the user
+     * @return an array of Event objects associated with the user
      */
     public Event[] findAllForUser(String associatedUsername) throws DataAccessException {
         List<Event> events = new ArrayList<>();
@@ -123,76 +123,7 @@ public class EventDAO {
         return events.toArray(new Event[0]);
     }
 
-    /**
-     * Finds all events associated with a specific person.
-     *
-     * @param personID the ID of the person
-     * @return a list of Event objects associated with the person
-     */
-    public List<Event> findAllForPerson(String personID) {
-        return Collections.emptyList();
-    }
-
-    /**
-     * Finds events by event type.
-     *
-     * @param eventType the event type
-     * @return a list of Event objects matching the event type
-     */
-    public List<Event> findByEventType(String eventType) {
-        return Collections.emptyList();
-    }
-
-    /**
-     * Finds events by location coordinates.
-     *
-     * @param latitude  the latitude coordinate
-     * @param longitude the longitude coordinate
-     * @return a list of Event objects near the specified location
-     */
-    public List<Event> findByLocation(float latitude, float longitude) {
-        return Collections.emptyList();
-    }
-
-    /**
-     * Finds events by country.
-     *
-     * @param country the country
-     * @return a list of Event objects in the specified country
-     */
-    public List<Event> findByCountry(String country) {
-        return Collections.emptyList();
-    }
-
-    /**
-     * Finds events by city.
-     *
-     * @param city the city
-     * @return a list of Event objects in the specified city
-     */
-    public List<Event> findByCity(String city) {
-        return Collections.emptyList();
-    }
-
-    /**
-     * Finds events by year.
-     *
-     * @param year the year
-     * @return a list of Event objects in the specified year
-     */
-    public List<Event> findByYear(int year) {
-        return Collections.emptyList();
-    }
-
-    /**
-     * Updates an existing event in the database.
-     *
-     * @param event the event to update
-     */
-    public void updateEvent(Event event) {
-
-    }
-
+    // TODO JavaDoc
     public int findBirthYear(String personID) throws DataAccessException {
         String sql = "SELECT year FROM event WHERE personID = ? AND eventType = 'Birth';";
         ResultSet rs;
@@ -265,15 +196,6 @@ public class EventDAO {
             e.printStackTrace();
             throw new DataAccessException("Error encountered while updating death year");
         }
-    }
-
-    /**
-     * Deletes an event from the database.
-     *
-     * @param event the event to delete
-     */
-    public void deleteEvent(Event event) {
-
     }
 
     /**
