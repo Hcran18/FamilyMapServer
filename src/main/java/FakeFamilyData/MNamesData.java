@@ -1,8 +1,12 @@
 package FakeFamilyData;
 
-import java.util.List;
-
+/**
+ * The MNamesData class represents a collection of male first names.
+ */
 public class MNamesData {
+    /**
+     * The array of male first names.
+     */
     private String[] data;
 
     public String[] getData() {

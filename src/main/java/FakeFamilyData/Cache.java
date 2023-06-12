@@ -1,9 +1,28 @@
 package FakeFamilyData;
 
+/**
+ * The Cache class represents a cache for storing location data, male first names data,
+ * female first names data, and surnames data.
+ */
 public class Cache {
+    /**
+     * The cached location data.
+     */
     private static LocationData locations;
+
+    /**
+     * The cached male first names data.
+     */
     private static MNamesData maleNames;
+
+    /**
+     * The cached female first names data.
+     */
     private static FNamesData femaleNames;
+
+    /**
+     * The cached surnames data.
+     */
     private static SNamesData surnames;
 
     public static LocationData getLocations() {

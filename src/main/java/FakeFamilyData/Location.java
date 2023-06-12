@@ -1,40 +1,42 @@
 package FakeFamilyData;
 
+/**
+ * The Location class represents a geographical location.
+ */
 public class Location {
+    /**
+     * The latitude of the location.
+     */
     private String latitude;
+
+    /**
+     * The longitude of the location.
+     */
     private String longitude;
+
+    /**
+     * The city of the location.
+     */
     private String city;
+
+    /**
+     * The country of the location.
+     */
     private String country;
 
     public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
-        this.latitude = latitude;
-    }
-
     public String getLongitude() {
         return longitude;
-    }
-
-    public void setLongitude(String longitude) {
-        this.longitude = longitude;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public String getCountry() {
         return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
     }
 }

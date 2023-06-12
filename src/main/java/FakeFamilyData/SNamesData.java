@@ -1,8 +1,12 @@
 package FakeFamilyData;
 
-import java.util.List;
-
+/**
+ * The SNamesData class represents a collection of surnames.
+ */
 public class SNamesData {
+    /**
+     * The array of surnames.
+     */
     private String[] data;
 
     public String[] getData() {
