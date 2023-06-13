@@ -9,12 +9,12 @@ import java.sql.*;
  */
 public class AuthtokenDao {
     /**
-     * The database connection used for interacting with the Authtoken table.
+     * The database connection.
      */
     private final Connection conn;
 
     /**
-     * Constructs an AuthtokenDao object with the specified database connection.
+     * Constructs an AuthtokenDao object.
      *
      * @param conn the database connection
      */
@@ -26,6 +26,7 @@ public class AuthtokenDao {
      * Inserts an authtoken into the database.
      *
      * @param authtoken the authtoken to create
+     * @throws DataAccessException if an error occurs while inserting authtoken
      */
     public void insertAuthtoken(Authtoken authtoken) throws DataAccessException {
         String sql = "INSERT INTO auth_token (authtoken, username) " +
@@ -44,10 +45,11 @@ public class AuthtokenDao {
     }
 
     /**
-     * Finds an authtoken by its token value.
+     * Finds an authtoken by its authtoken value.
      *
-     * @param authtoken the token value of the authtoken to find
-     * @return the found Authtoken object, or null if not found
+     * @param authtoken the value of the authtoken to find
+     * @return the found Authtoken object
+     * @throws DataAccessException if an error occurs while finding authtoken
      */
     public Authtoken findByAuthtoken(String authtoken) throws DataAccessException {
         Authtoken user;
@@ -76,7 +78,8 @@ public class AuthtokenDao {
      * Finds an authtoken by the associated username.
      *
      * @param username the associated username
-     * @return the found Authtoken object, or null if not found
+     * @return the found Authtoken object
+     * @throws DataAccessException if an error occurs while finding authtoken
      */
     public Authtoken findByUsername(String username) throws DataAccessException {
         Authtoken authtoken;
@@ -102,9 +105,10 @@ public class AuthtokenDao {
     }
 
     /**
-     * Deletes an authtoken by its token value.
+     * Deletes an authtoken by its authtoken value.
      *
-     * @param authtoken the token value of the authtoken to delete
+     * @param authtoken the value of the authtoken to delete
+     * @throws DataAccessException if an error occurs while deleting authtoken
      */
     public void deleteByAuthtoken(String authtoken) throws DataAccessException {
         String sql = "DELETE FROM auth_token WHERE authtoken = ?;";
@@ -120,10 +124,10 @@ public class AuthtokenDao {
     }
 
     /**
-     * Deletes authtokens associated with the given username.
+     * Deletes all authtokens with the given associated username.
      *
      * @param username the associated username
-     * @throws DataAccessException if an error occurs while deleting the authtoken from the database
+     * @throws DataAccessException if an error occurs while deleting the authtokens from the database
      */
     public void deleteByUsername(String username) throws DataAccessException {
         String sql = "DELETE FROM auth_token WHERE username = ?;";
@@ -139,7 +143,8 @@ public class AuthtokenDao {
     }
 
     /**
-     * Clears the Authtoken table in the database.
+     * Clears the Authtoken table
+     * @throws DataAccessException if an error occurs while clearing.
      */
     public void clear() throws DataAccessException {
         String sql = "DELETE FROM auth_token";

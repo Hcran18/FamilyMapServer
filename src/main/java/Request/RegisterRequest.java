@@ -5,32 +5,32 @@ package Request;
  */
 public class RegisterRequest {
     /**
-     * The username for the registration request.
+     * The username for the request.
      */
     private String username;
 
     /**
-     * The password for the registration request.
+     * The password for the request.
      */
     private String password;
 
     /**
-     * The email for the registration request.
+     * The email for the request.
      */
     private String email;
 
     /**
-     * The first name for the registration request.
+     * The first name for the request.
      */
     private String firstName;
 
     /**
-     * The last name for the registration request.
+     * The last name for the request.
      */
     private String lastName;
 
     /**
-     * The gender for the registration request.
+     * The gender for the request.
      */
     private String gender;
 

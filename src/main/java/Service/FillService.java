@@ -13,22 +13,22 @@ import java.sql.Connection;
  */
 public class FillService {
     /**
-     * The Database object used for accessing the database.
+     * The Database object.
      */
     private Database db;
 
     /**
-     * The UserDao object used for accessing the user data in the database.
+     * The Dao object used for accessing the user data.
      */
     private UserDao uDao;
 
     /**
-     * The PersonDao object used for accessing the person data in the database.
+     * The Dao object used for accessing the person data.
      */
     private PersonDao pDao;
 
     /**
-     * The EventDao object used for accessing the event data in the database.
+     * The Dao object used for accessing the event data.
      */
     private EventDAO eDao;
 

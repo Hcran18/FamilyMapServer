@@ -10,34 +10,34 @@ import java.sql.Connection;
  */
 public class ClearService {
     /**
-     * The Database object used for accessing the database.
+     * The Database object.
      */
     private Database db;
 
     /**
-     * The UserDao object used for accessing the user data in the database.
+     * The Dao object used for accessing the user data.
      */
     private UserDao uDao;
 
     /**
-     * The PersonDao object used for accessing the person data in the database.
+     * The Dao object used for accessing the person data.
      */
     private PersonDao pDao;
 
     /**
-     * The AuthtokenDao object used for accessing the authtoken data in the database.
+     * The Dao object used for accessing the authtoken data.
      */
     private AuthtokenDao aDao;
 
     /**
-     * The EventDAO object used for accessing the event data in the database.
+     * The DAO object used for accessing the event data
      */
     private EventDAO eDAO;
 
     /**
-     * Clears all data in the system.
+     * Clears all data in the database.
      *
-     * @return The result of the clear operation.
+     * @return The result of the operation.
      */
     public ClearResult clear() {
         db = new Database();

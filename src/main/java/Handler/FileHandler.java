@@ -10,15 +10,14 @@ import java.net.HttpURLConnection;
 import java.nio.file.Files;
 
 /**
- * The FileHandler class implements the HttpHandler interface to handle HTTP requests related to file retrieval.
- * It handles GET requests for retrieving files and generates appropriate responses.
+ * The FileHandler class implements HttpHandler to handle HTTP requests related to file retrieval.
  */
 public class FileHandler implements HttpHandler {
     /**
      * Handles the HTTP request for the main file retrieval and generates the appropriate response.
      *
      * @param exchange The HttpExchange object representing the HTTP request and response.
-     * @throws IOException If an I/O error occurs while handling the request or response.
+     * @throws IOException If an IO error occurs while handling the request or response.
      */
     @Override
     public void handle(HttpExchange exchange) throws IOException {

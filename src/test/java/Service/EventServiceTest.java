@@ -23,6 +23,8 @@ public class EventServiceTest {
             Connection conn = db.getConnection();
             EventDAO eDao = new EventDAO(conn);
 
+            eDao.clear();
+
             Event newBirth = new Event("birthID", "username", "Dave123A",
                     1, 2, "USA", "Provo", "Birth", 2022);
             Event newDeath = new Event("deathID", "username", "Dave123A",

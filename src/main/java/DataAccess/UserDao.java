@@ -9,12 +9,12 @@ import java.sql.*;
  */
 public class UserDao {
     /**
-     * The database connection used for interacting with the User table.
+     * The database connection.
      */
     private final Connection conn;
 
     /**
-     * Constructs a UserDao object with the specified database connection.
+     * Constructs a UserDao object.
      *
      * @param conn the database connection
      */
@@ -54,6 +54,7 @@ public class UserDao {
      *
      * @param username the username of the user to find
      * @return the found User object, or null if not found
+     * @throws DataAccessException if an error occurs while finding User
      */
     public User findByUsername(String username) throws DataAccessException {
         User user;
@@ -85,6 +86,7 @@ public class UserDao {
      * Deletes a user from the database.
      *
      * @param username the user to delete
+     * @throws DataAccessException if an error occurs while deleting a User
      */
     public void delete(String username) throws DataAccessException {
         String sql = "DELETE FROM user WHERE username = ?;";

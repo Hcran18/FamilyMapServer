@@ -10,14 +10,14 @@ import java.io.*;
 import java.net.HttpURLConnection;
 
 /**
- * The ClearHandler class implements the HttpHandler interface to handle HTTP requests for clearing data.
+ * The ClearHandler class implements HttpHandler to handle HTTP requests for clearing data.
  */
 public class ClearHandler implements HttpHandler {
     /**
      * Handles the HTTP request for clearing data and generates the appropriate response.
      *
      * @param exchange The HttpExchange object representing the HTTP request and response.
-     * @throws IOException If an I/O error occurs while handling the request or response.
+     * @throws IOException If an IO error occurs while handling the request or response.
      */
     @Override
     public void handle(HttpExchange exchange) throws IOException {

@@ -5,12 +5,12 @@ package Result;
  */
 public class FillResult {
     /**
-     * The message associated with the filling operation result.
+     * The message associated with the operation.
      */
     private String message;
 
     /**
-     * Indicates whether the filling operation was successful.
+     * Indicates if the operation was successful.
      */
     private boolean success;
 

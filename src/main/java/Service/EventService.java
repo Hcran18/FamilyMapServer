@@ -13,17 +13,17 @@ import java.sql.Connection;
  */
 public class EventService {
     /**
-     * The Database object used for accessing the database.
+     * The Database object.
      */
     private Database db;
 
     /**
-     * The EventDao object used for accessing the event data in the database.
+     * The Dao object used for accessing the event data.
      */
     private EventDAO eDao;
 
     /**
-     * An array of events retrieved from the database.
+     * An array of events.
      */
     private Event[] events;
 

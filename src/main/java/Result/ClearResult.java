@@ -5,12 +5,12 @@ package Result;
  */
 public class ClearResult {
     /**
-     * The message associated with the clear operation result.
+     * The message associated with the operation.
      */
     private String message;
 
     /**
-     * Indicates whether the clear operation was successful.
+     * Indicates if the operation was successful..
      */
     private boolean success;
 

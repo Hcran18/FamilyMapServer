@@ -14,24 +14,24 @@ import java.util.Objects;
  */
 public class Event_EventIDService {
     /**
-     * The Database object used for accessing the database.
+     * The Database object.
      */
     private Database db;
 
     /**
-     * The EventDao object used for accessing the event data in the database.
+     * The Dao object used for accessing the event data.
      */
     private EventDAO eDao;
 
     /**
-     * The Event object representing the retrieved event.
+     * The Event object.
      */
     private Event event;
 
     /**
-     * Retrieves the event details for a specific event ID.
+     * Retrieves the event given an event ID.
      *
-     * @return The result of the event retrieval operation.
+     * @return The result of the operation.
      */
     public Event_EventIDResult event_eventID(String username, String eventID) {
         db = new Database();

@@ -13,17 +13,17 @@ import java.sql.Connection;
  */
 public class PersonService {
     /**
-     * The Database object used for accessing the database.
+     * The Database object.
      */
     private Database db;
 
     /**
-     * The PersonDao object used for accessing the person data in the database.
+     * The Dao object used for accessing the person data.
      */
     private PersonDao pDao;
 
     /**
-     * An array of Person objects representing the retrieved person data.
+     * An array of Person objects.
      */
     private Person[] persons;
 

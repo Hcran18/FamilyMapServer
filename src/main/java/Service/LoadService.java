@@ -16,42 +16,42 @@ import java.util.UUID;
  */
 public class LoadService {
     /**
-     * The Database object used for accessing the database.
+     * The Database object.
      */
     Database db;
 
     /**
-     * The UserDao object used for accessing the user data in the database.
+     * The Dao object used for accessing the user data.
      */
     UserDao uDao;
 
     /**
-     * The PersonDao object used for accessing the person data in the database.
+     * The Dao object used for accessing the person data.
      */
     PersonDao pDao;
 
     /**
-     * The EventDao object used for accessing the event data in the database.
+     * The Dao object used for accessing the event data.
      */
     EventDAO eDao;
 
     /**
-     * The AuthtokenDao object used for accessing the authtoken data in the database.
+     * The Dao object used for accessing the authtoken data.
      */
     AuthtokenDao aDao;
 
     /**
-     * An array of User objects representing the users to load.
+     * An array of User objects.
      */
     User[] users;
 
     /**
-     * An array of Person objects representing the people to load.
+     * An array of Person objects.
      */
     Person[] people;
 
     /**
-     * An array of Event objects representing the events to load.
+     * An array of Event objects.
      */
     Event[] events;
 
@@ -71,9 +71,9 @@ public class LoadService {
     int numEvents;
 
     /**
-     * Loads the data from the specified request into the database.
+     * Loads the data from the request into the database.
      *
-     * @param r The load request containing the data to be loaded.
+     * @param r The request containing the data to be loaded.
      * @return The result of the load operation.
      */
     public LoadResult load(LoadRequest r) {

@@ -5,12 +5,12 @@ package Request;
  */
 public class LoginRequest {
     /**
-     * The username for the login request.
+     * The username for the request.
      */
     private String username;
 
     /**
-     * The password for the login request.
+     * The password for the request.
      */
     private String password;
 

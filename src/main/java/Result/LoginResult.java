@@ -5,27 +5,27 @@ package Result;
  */
 public class LoginResult {
     /**
-     * The authentication token associated with the logged-in user.
+     * The authentication token associated with the user.
      */
     private String authtoken;
 
     /**
-     * The username of the logged-in user.
+     * The username of the user.
      */
     private String username;
 
     /**
-     * The person ID associated with the logged-in user.
+     * The person ID associated with the user.
      */
     private String personID;
 
     /**
-     * Indicates whether the login operation was successful.
+     * Indicates if the operation was successful.
      */
     private boolean success;
 
     /**
-     * The message associated with the login operation result.
+     * The message associated with the operation.
      */
     private String message;
 

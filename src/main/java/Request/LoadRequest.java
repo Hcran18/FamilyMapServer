@@ -5,21 +5,21 @@ import model.Person;
 import model.Event;
 
 /**
- * Represents a request to load data into the application.
+ * Represents a request to load data.
  */
 public class LoadRequest {
     /**
-     * An array of User objects to be loaded.
+     * An array of User objects.
      */
     User[] users;
 
     /**
-     * An array of Person objects to be loaded.
+     * An array of Person objects.
      */
     Person[] persons;
 
     /**
-     * An array of Event objects to be loaded.
+     * An array of Event objects.
      */
     Event[] events;
 

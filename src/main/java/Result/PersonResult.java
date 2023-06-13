@@ -3,21 +3,21 @@ package Result;
 import model.Person;
 
 /**
- * Represents the result of a person-related operation.
+ * Represents the result of a person operation.
  */
 public class PersonResult {
     /**
-     * An array of Person objects containing the data related to the operation.
+     * An array of Person objects
      */
     private Person[] data;
 
     /**
-     * Indicates whether the operation was successful.
+     * Indicates if the operation was successful.
      */
     private boolean success;
 
     /**
-     * The message associated with the operation result.
+     * The message associated with the operation.
      */
     private String message;
 

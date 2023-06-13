@@ -15,17 +15,17 @@ import java.util.Objects;
  */
 public class Person_PersonIDService {
     /**
-     * The Database object used for accessing the database.
+     * The Database object.
      */
     private Database db;
 
     /**
-     * The PersonDao object used for accessing the person data in the database.
+     * The Dao object used for accessing the person data.
      */
     private PersonDao pDao;
 
     /**
-     * The Person object representing the retrieved person data.
+     * The Person object.
      */
     private Person person;
 

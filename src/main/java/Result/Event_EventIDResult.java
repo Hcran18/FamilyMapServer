@@ -1,7 +1,7 @@
 package Result;
 
 /**
- * Represents the result of an event-related operation by event ID.
+ * Represents the result of an eventID operation.
  */
 public class Event_EventIDResult {
     /**
@@ -20,22 +20,22 @@ public class Event_EventIDResult {
     private String personID;
 
     /**
-     * The latitude coordinate of the event location.
+     * The latitude coordinate of the event.
      */
     private float latitude;
 
     /**
-     * The longitude coordinate of the event location.
+     * The longitude coordinate of the event.
      */
     private float longitude;
 
     /**
-     * The country where the event took place.
+     * The country of the event.
      */
     private String country;
 
     /**
-     * The city where the event took place.
+     * The city of the event.
      */
     private String city;
 
@@ -45,17 +45,17 @@ public class Event_EventIDResult {
     private String eventType;
 
     /**
-     * The year when the event occurred.
+     * The year of the event.
      */
     private int year;
 
     /**
-     * Indicates whether the event-related operation was successful.
+     * Indicates if the operation was successful.
      */
     private boolean success;
 
     /**
-     * The message associated with the event-related operation result.
+     * The message associated with the operation.
      */
     private String message;
 

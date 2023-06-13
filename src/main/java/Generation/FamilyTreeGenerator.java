@@ -1,6 +1,8 @@
 package Generation;
 
 import DataAccess.DataAccessException;
+import DataAccess.Database;
+import DataAccess.EventDAO;
 import DataAccess.PersonDao;
 import FakeFamilyData.*;
 import Generation.EventGenerator;
@@ -10,26 +12,26 @@ import java.sql.Connection;
 import java.util.UUID;
 
 /**
- * The FamilyTreeGenerator class is responsible for generating a family tree based on the provided parameters.
+ * The FamilyTreeGenerator class is responsible for generating a family tree.
  */
 public class FamilyTreeGenerator {
     /**
-     * The number of generations to generate in the family tree.
+     * The number of generations to generate.
      */
     private int numGenerations;
 
     /**
-     * The cached male first names data.
+     * The cached male first names.
      */
     private MNamesData maleNames = Cache.getMaleNames();
 
     /**
-     * The cached female first names data.
+     * The cached female first names.
      */
     private FNamesData femaleNames = Cache.getFemaleNames();
 
     /**
-     * The cached surnames data.
+     * The cached surnames.
      */
     private SNamesData surnames = Cache.getSurnames();
 
@@ -69,17 +71,17 @@ public class FamilyTreeGenerator {
     private String userMother;
 
     /**
-     * The database connection used for interacting with the database.
+     * The database connection.
      */
     private Connection conn;
 
     /**
-     * The DAO for interacting with the Person table in the database.
+     * The DAO for interacting with the Person table.
      */
     private PersonDao pDao;
 
     /**
-     * The event generator used for generating events for the family tree.
+     * The event generator used for generating events.
      */
     private EventGenerator eventGenerator;
 
@@ -109,38 +111,39 @@ public class FamilyTreeGenerator {
     }
 
     /**
-     * Generates the family tree based on the provided parameters.
+     * Generates the family tree.
      *
      * @throws DataAccessException if there is an error accessing the data
      */
     public void generateFamilyTree() throws DataAccessException {
         // Call generate person to recursively generate the family tree
-        generatePerson(rootGender, numGenerations);
+        generatePerson(rootGender, numGenerations, 1700);
         generatePersonForUser();
         eventGenerator.generateBirthForUser(personID);
     }
 
     /**
-     * Recursively Generates the family tree based on the number of generations
+     * Recursively generates the family tree
      *
      * @param gender the gender of the person to generate
      * @param generations the number of generations to generate for this person
      * @return the generated person
      * @throws DataAccessException if there is an error accessing the data
      */
-    private Person generatePerson(String gender, int generations) throws DataAccessException {
+    private Person generatePerson(String gender, int generations, int year) throws DataAccessException {
         Person mother = null;
         Person father = null;
 
         // Recursively generate each person in the tree
         if (generations >= 1) {
-            mother = generatePerson("f", generations - 1);
-            father = generatePerson("m", generations - 1);
+            mother = generatePerson("f", generations - 1, year - 25);
+            father = generatePerson("m", generations - 1, year - 25);
 
             mother.setSpouseID(father.getPersonID());
             father.setSpouseID(mother.getPersonID());
 
-            eventGenerator.generateMarriageEvents(mother, father);
+            year += 25;
+            eventGenerator.generateMarriageEvents(mother, father, year);
 
             userFather = father.getPersonID();
             userMother = mother.getPersonID();
@@ -171,8 +174,9 @@ public class FamilyTreeGenerator {
 
         person.setLastName(generateRandomSurname());
 
-        eventGenerator.generateBirthEvent(person);
-        eventGenerator.generateDeathEvent(person);
+        eventGenerator.generateBirthEvent(person, year);
+        year += 80;
+        eventGenerator.generateDeathEvent(person, year);
 
         return person;
     }

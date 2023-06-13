@@ -5,27 +5,27 @@ package Result;
  */
 public class RegisterResult {
     /**
-     * The authentication token generated for the registered user.
+     * The authentication token generated for the user.
      */
     private String authtoken;
 
     /**
-     * The username of the registered user.
+     * The username of the user.
      */
     private String username;
 
     /**
-     * The unique identifier of the person associated with the registered user.
+     * The unique identifier of the user.
      */
     private String personID;
 
     /**
-     * Indicates whether the registration operation was successful.
+     * Indicates if the operation was successful.
      */
     private boolean success;
 
     /**
-     * The message associated with the registration result.
+     * The message associated with the operation.
      */
     private String message;
 

@@ -12,14 +12,14 @@ import java.io.*;
 import java.net.HttpURLConnection;
 
 /**
- * The LoginHandler class implements the HttpHandler interface to handle HTTP requests related to user login.
+ * The LoginHandler class implements HttpHandler to handle HTTP requests related to user login.
  */
 public class LoginHandler implements HttpHandler {
     /**
      * Handles the HTTP request and generates the appropriate response.
      *
      * @param exchange The HttpExchange object representing the HTTP request and response.
-     * @throws IOException If an I/O error occurs while handling the request or response.
+     * @throws IOException If an IO error occurs while handling the request or response.
      */
     @Override
     public void handle(HttpExchange exchange) throws IOException {
@@ -61,9 +61,9 @@ public class LoginHandler implements HttpHandler {
     /**
      * Reads the input stream and converts it to a String.
      *
-     * @param is The InputStream object representing the input stream to be read.
+     * @param is The InputStream object.
      * @return A String representing the contents of the input stream.
-     * @throws IOException If an I/O error occurs while reading the input stream.
+     * @throws IOException If an IO error occurs while reading the input stream.
      */
     private String readString(InputStream is) throws IOException {
         StringBuilder sb = new StringBuilder();

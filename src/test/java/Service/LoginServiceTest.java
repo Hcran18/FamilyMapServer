@@ -33,7 +33,7 @@ public class LoginServiceTest {
 
             AuthtokenDao aDao = new AuthtokenDao(conn);
 
-            Authtoken newAuthtoken = new Authtoken("myAuthtoken", "username");
+            Authtoken newAuthtoken = new Authtoken("myAuthtoken", newUser.getUsername());
 
             aDao.insertAuthtoken(newAuthtoken);
 
@@ -56,7 +56,7 @@ public class LoginServiceTest {
 
             AuthtokenDao aDao = new AuthtokenDao(conn);
 
-            aDao.deleteByAuthtoken("myAuthtoken");
+            aDao.deleteByUsername("username");
 
             db.closeConnection(true);
         }
@@ -80,7 +80,7 @@ public class LoginServiceTest {
         LoginResult result = service.login(request);
 
         assertTrue(result.isSuccess());
-        assertEquals("myAuthtoken", result.getAuthtoken());
+        assertNotNull(result.getAuthtoken());
         assertEquals("username", result.getUsername());
         assertNotNull(result.getPersonID());
     }

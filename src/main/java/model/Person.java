@@ -137,6 +137,12 @@ public class Person {
         this.spouseID = spouseID;
     }
 
+    /**
+     * Compares this Person object with an object for equality.
+     *
+     * @param o the object to compare for equality
+     * @return true if equal false otherwise
+     */
     @Override
     public boolean equals(Object o) {
         if (o == this) {

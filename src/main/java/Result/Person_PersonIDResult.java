@@ -1,7 +1,7 @@
 package Result;
 
 /**
- * Represents the result of a person-related operation by person ID.
+ * Represents the result of a personID operation.
  */
 public class Person_PersonIDResult {
     /**
@@ -45,12 +45,12 @@ public class Person_PersonIDResult {
     private String spouseID;
 
     /**
-     * Indicates whether the operation was successful.
+     * Indicates if the operation was successful.
      */
     private boolean success;
 
     /**
-     * The message associated with the operation result.
+     * The message associated with the operation.
      */
     private String message;
 

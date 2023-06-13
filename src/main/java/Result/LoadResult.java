@@ -5,12 +5,12 @@ package Result;
  */
 public class LoadResult {
     /**
-     * The message associated with the loading operation result.
+     * The message associated with the operation.
      */
     private String message;
 
     /**
-     * Indicates whether the loading operation was successful.
+     * Indicates if the operation was successful.
      */
     private boolean success;
 

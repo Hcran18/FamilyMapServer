@@ -21,14 +21,14 @@ import java.net.HttpURLConnection;
 import java.sql.Connection;
 
 /**
- * The EventHandler class implements the HttpHandler interface to handle HTTP requests related to events.
+ * The EventHandler class implements HttpHandler to handle HTTP requests related to events.
  */
 public class EventHandler implements HttpHandler {
     /**
      * Handles the HTTP request for event retrieval and generates the appropriate response.
      *
      * @param exchange The HttpExchange object representing the HTTP request and response.
-     * @throws IOException If an I/O error occurs while handling the request or response.
+     * @throws IOException If an IO error occurs while handling the request or response.
      */
     @Override
     public void handle(HttpExchange exchange) throws IOException {

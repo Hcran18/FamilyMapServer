@@ -12,17 +12,17 @@ import com.sun.net.httpserver.*;
 public class Server {
 
 	/**
-	 * The maximum number of waiting incoming connections to queue.
+	 * The maximum number of waiting connections.
 	 */
 	private static final int MAX_WAITING_CONNECTIONS = 12;
 
 	/**
-	 * The HttpServer object used for handling incoming HTTP requests.
+	 * The HttpServer object.
 	 */
 	private HttpServer server;
 
 	/**
-	 * Runs the HTTP server on the specified port number.
+	 * Runs the HTTP server on the given port number.
 	 *
 	 * @param portNumber The port number on which the server will run.
 	 */
@@ -68,7 +68,7 @@ public class Server {
 	}
 
 	/**
-	 * Stores the necessary data from JSON files into the cache.
+	 * Stores the needed data from JSON files into the cache.
 	 */
 	private static void storeData() {
 		try {
@@ -101,9 +101,9 @@ public class Server {
 	}
 
 	/**
-	 * The entry point of the server application.
+	 * The beginning point of the server.
 	 *
-	 * @param args The command line arguments. The first argument should be the port number.
+	 * @param args The command line arguments. Port Number.
 	 */
 	public static void main(String[] args) {		
 		String portNumber = args[0];

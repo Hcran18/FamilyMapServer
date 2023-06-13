@@ -7,16 +7,16 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * Provides data access methods for interacting with the Event table in the database.
+ * Provides data access methods for interacting with the Event table.
  */
 public class EventDAO {
     /**
-     * The database connection used for interacting with the Event table.
+     * The database connection.
      */
     private final Connection conn;
 
     /**
-     * Constructs an EventDAO object with the specified database connection.
+     * Constructs an EventDAO object.
      *
      * @param conn the database connection
      */
@@ -60,7 +60,7 @@ public class EventDAO {
      * Finds an event by its ID.
      *
      * @param eventID the ID of the event to find
-     * @return the found Event object, or null if not found
+     * @return the found Event object
      * @throws DataAccessException if an error occurs while finding the event
      */
     public Event findByID(String eventID) throws DataAccessException {
@@ -90,6 +90,7 @@ public class EventDAO {
      *
      * @param associatedUsername the username of the user
      * @return an array of Event objects associated with the user
+     * @throws DataAccessException if an error occurs while finding events
      */
     public Event[] findAllForUser(String associatedUsername) throws DataAccessException {
         List<Event> events = new ArrayList<>();
@@ -127,8 +128,8 @@ public class EventDAO {
      * Finds the birth year of a person with the given person ID.
      *
      * @param personID the person ID to search for
-     * @return the birth year of the person, or 0 if not found
-     * @throws DataAccessException if an error occurs while finding the birth year in the database
+     * @return the birth year of the person
+     * @throws DataAccessException if an error occurs while finding the birth year
      */
     public int findBirthYear(String personID) throws DataAccessException {
         String sql = "SELECT year FROM event WHERE personID = ? AND eventType = 'Birth';";
@@ -155,8 +156,8 @@ public class EventDAO {
      * Finds the death year of a person with the given person ID.
      *
      * @param personID the person ID to search for
-     * @return the death year of the person, or 0 if not found
-     * @throws DataAccessException if an error occurs while finding the death year in the database
+     * @return the death year of the person
+     * @throws DataAccessException if an error occurs while finding the death year
      */
     public int findDeathYear(String personID) throws DataAccessException {
         String sql = "SELECT year FROM event WHERE personID = ? AND eventType = 'Death';";
@@ -184,7 +185,7 @@ public class EventDAO {
      *
      * @param personID the person ID to update
      * @param year the new birth year
-     * @throws DataAccessException if an error occurs while updating the birth year in the database
+     * @throws DataAccessException if an error occurs while updating the birth year
      */
     public void updateBirthByID(String personID, int year) throws DataAccessException {
         String sql = "UPDATE event SET year = ? WHERE personID = ? AND eventType = ?";
@@ -207,7 +208,7 @@ public class EventDAO {
      *
      * @param personID the person ID to update
      * @param year the new death year
-     * @throws DataAccessException if an error occurs while updating the death year in the database
+     * @throws DataAccessException if an error occurs while updating the death year
      */
     public void updateDeathByID(String personID, int year) throws DataAccessException {
         String sql = "UPDATE event SET year = ? WHERE personID = ? AND eventType = ?";
@@ -229,6 +230,7 @@ public class EventDAO {
      * Clears all events for their associatedUserName.
      *
      * @param username the associatedUsername of the events to delete
+     * @throws DataAccessException if an error occurs while clearing
      */
     public void clearByUsername(String username) throws DataAccessException {
         String sql = "DELETE FROM event WHERE associatedUsername = ?";

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 /**
  * Represents an authentication token associated with a user.
  */
@@ -39,5 +41,29 @@ public class Authtoken {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    /**
+     * Compares this Authtoken object with an object for equality.
+     *
+     * @param o the object to compare for equality
+     * @return true if equal false otherwise
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o == null) {
+            return false;
+        }
+        if (o.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Authtoken authtoken = (Authtoken) o;
+
+        return Objects.equals(this.authtoken, authtoken.authtoken) &&
+                Objects.equals(this.username, authtoken.username);
     }
 }

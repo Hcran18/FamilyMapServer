@@ -3,21 +3,21 @@ package Result;
 import model.Event;
 
 /**
- * Represents the result of an event-related operation.
+ * Represents the result of an event operation.
  */
 public class EventResult {
     /**
-     * The array of events returned as the result of the operation.
+     * The array of events.
      */
     private Event[] data;
 
     /**
-     * Indicates whether the event-related operation was successful.
+     * Indicates if operation was successful.
      */
     private boolean success;
 
     /**
-     * The message associated with the event-related operation result.
+     * The message associated with the operation.
      */
     private String message;
 

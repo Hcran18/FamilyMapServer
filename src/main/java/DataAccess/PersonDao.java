@@ -7,16 +7,16 @@ import java.sql.*;
 import java.util.*;
 
 /**
- * Provides data access methods for interacting with the Person table in the database.
+ * Provides data access methods for interacting with the Person table.
  */
 public class PersonDao {
     /**
-     * The database connection used for interacting with the Person table.
+     * The database connection.
      */
     private final Connection conn;
 
     /**
-     * Constructs a PersonDao object with the specified database connection.
+     * Constructs a PersonDao object.
      *
      * @param conn the database connection
      */
@@ -27,7 +27,7 @@ public class PersonDao {
     /**
      * Inserts a person into the database.
      *
-     * @param person the person to create
+     * @param person the person to insert
      * @throws DataAccessException if an error occurs while inserting the person
      */
     public void insertPerson(Person person) throws DataAccessException {
@@ -57,7 +57,7 @@ public class PersonDao {
      *
      * @param personID the ID of the person to find
      * @throws DataAccessException if an error occurs while finding the Person by ID
-     * @return the found Person object, or null if not found
+     * @return the found Person object
      */
     public Person findByID(String personID) throws DataAccessException {
         Person person;
@@ -86,11 +86,11 @@ public class PersonDao {
     }
 
     /**
-     * Retrieves the count of people in the database with the given associated username.
+     * Retrieves the number of people in the database with the given associated username.
      *
      * @param associatedUsername the associated username to search for
-     * @return the count of people with the associated username
-     * @throws DataAccessException if an error occurs while retrieving the count from the database
+     * @return the number of people with the associated username
+     * @throws DataAccessException if an error occurs while retrieving the count
      */
     public int getCountByUsername(String associatedUsername) throws DataAccessException {
         String sql = "SELECT COUNT(*) FROM person WHERE associatedUsername = ?";
@@ -113,10 +113,11 @@ public class PersonDao {
     }
 
     /**
-     * Finds all persons associated with a specific user.
+     * Finds all people associated with a specific user.
      *
      * @param associatedUsername the associated username
      * @return an array of Person objects associated with the user
+     * @throws DataAccessException if an error occurs while finding people
      */
     public Person[] findAllForUser(String associatedUsername) throws DataAccessException {
         List<Person> persons = new ArrayList<>();
@@ -154,6 +155,7 @@ public class PersonDao {
      *
      * @param personID the ID of the person to find children for
      * @return a personID representing the child
+     * @throws DataAccessException if an error occurs while finding child
      */
     public String findChild(String personID) throws DataAccessException {
         String childID = null;
@@ -179,6 +181,7 @@ public class PersonDao {
      * Clears all person for their associatedUserName.
      *
      * @param username the associatedUsername of the people to delete
+     * @throws DataAccessException if an error occurs while clearing
      */
     public void clearByUsername(String username) throws DataAccessException {
         String sql = "DELETE FROM person WHERE associatedUsername = ?";
