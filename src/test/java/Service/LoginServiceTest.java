@@ -94,7 +94,7 @@ public class LoginServiceTest {
         LoginResult result = service.login(request);
 
         assertFalse(result.isSuccess());
-        assertEquals("Error: User does not exist", result.getMessage());
+        assertEquals("Error: Invalid login attempt", result.getMessage());
     }
 
     @Test

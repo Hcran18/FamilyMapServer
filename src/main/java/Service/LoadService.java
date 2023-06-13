@@ -83,52 +83,61 @@ public class LoadService {
         people = r.getPersons();
         events = r.getEvents();
 
-        numUsers = users.length;
-        numPeople = people.length;
-        numEvents = events.length;
+        if (users != null && people != null && events != null) {
+            numUsers = users.length;
+            numPeople = people.length;
+            numEvents = events.length;
 
-        try {
-            db.openConnection();
-            Connection conn = db.getConnection();
+            try {
+                db.openConnection();
+                Connection conn = db.getConnection();
 
-            uDao = new UserDao(conn);
-            pDao = new PersonDao(conn);
-            eDao = new EventDAO(conn);
-            aDao = new AuthtokenDao(conn);
+                uDao = new UserDao(conn);
+                pDao = new PersonDao(conn);
+                eDao = new EventDAO(conn);
+                aDao = new AuthtokenDao(conn);
 
-            uDao.clear();
-            pDao.clear();
-            eDao.clear();
+                uDao.clear();
+                pDao.clear();
+                eDao.clear();
 
-            for (User user : users) {
-                uDao.insertUser(user);
-                UUID authtokenID = UUID.randomUUID();
-                Authtoken authtoken = new Authtoken(authtokenID.toString(), user.getUsername());
-                aDao.insertAuthtoken(authtoken);
+                for (User user : users) {
+                    uDao.insertUser(user);
+                    UUID authtokenID = UUID.randomUUID();
+                    Authtoken authtoken = new Authtoken(authtokenID.toString(), user.getUsername());
+                    aDao.insertAuthtoken(authtoken);
+                }
+                for (Person person : people) {
+                    pDao.insertPerson(person);
+                }
+                for (Event event : events) {
+                    eDao.insertEvent(event);
+                }
+
+                db.closeConnection(true);
+
+                LoadResult result = new LoadResult();
+                result.setMessage("Successfully added " + numUsers + " users, " + numPeople + " persons, and " +
+                        numEvents + " events to the database.");
+                result.setSuccess(true);
+
+                return result;
+            } catch (DataAccessException e) {
+                e.printStackTrace();
+
+                db.closeConnection(false);
+
+                LoadResult result = new LoadResult();
+                result.setMessage("Error: Database Connection failed");
+                result.setSuccess(false);
+
+                return result;
             }
-            for (Person person : people) {
-                pDao.insertPerson(person);
-            }
-            for (Event event : events) {
-                eDao.insertEvent(event);
-            }
-
-            db.closeConnection(true);
-
-            LoadResult result = new LoadResult();
-            result.setMessage("Successfully added " + numUsers + " users, " + numPeople + " persons, and " +
-                    numEvents + " events to the database.");
-            result.setSuccess(true);
-
-            return result;
         }
-        catch (DataAccessException e) {
-            e.printStackTrace();
-
-            db.closeConnection(false);
-
+        else {
             LoadResult result = new LoadResult();
-            result.setMessage("Error: Database Connection failed");
+
+            result.setMessage("Error: all fields must be filled out");
             result.setSuccess(false);
 
             return result;

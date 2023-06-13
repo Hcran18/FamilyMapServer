@@ -65,20 +65,22 @@ public class LoginService {
 
                 if (foundUser != null) {
                     if (r.getPassword().equals(foundUser.getPassword())) {
+                        db.closeConnection(true);
 
                         result.setAuthtoken(authtoken);
                         result.setUsername(foundUser.getUsername());
                         result.setPersonID(foundUser.getPersonID());
                         result.setSuccess(true);
-                    } else {
+                    }
+                    else {
+                        db.closeConnection(false);
                         result.setMessage("Error: Password is incorrect");
                         result.setSuccess(false);
                     }
 
-                    db.closeConnection(true);
-
                     return result;
-                } else {
+                }
+                else {
                     result.setMessage("Error: User does not exist");
                     result.setSuccess(false);
 

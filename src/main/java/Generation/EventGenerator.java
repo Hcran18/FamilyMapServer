@@ -272,9 +272,7 @@ public class EventGenerator {
         Random random = new Random();
         int year;
 
-        do {
-            year = random.nextInt(motherYearAge50 - fatherYearAge13 + 1) + fatherYearAge13;
-        } while (year <= motherBirthYear + 13);
+        year = random.nextInt(motherYearAge50 - fatherYearAge13 + 1) + fatherYearAge13;
 
         int randomIndex = (int) (Math.random() * locations.getData().length);
         float latitude = Float.parseFloat(locations.getData()[randomIndex].getLatitude());

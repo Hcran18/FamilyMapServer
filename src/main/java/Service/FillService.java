@@ -42,7 +42,6 @@ public class FillService {
 
         try {
             db.openConnection();
-
             Connection conn = db.getConnection();
 
             uDao = new UserDao(conn);
@@ -54,30 +53,43 @@ public class FillService {
 
             User user = uDao.findByUsername(username);
 
-            String personID = user.getPersonID();
-            String firstName = user.getFirstName();
-            String lastName = user.getLastName();
-            String gender = user.getGender();
+            if (user != null) {
+                String personID = user.getPersonID();
+                String firstName = user.getFirstName();
+                String lastName = user.getLastName();
+                String gender = user.getGender();
 
-            FamilyTreeGenerator ft = new FamilyTreeGenerator(generations, personID, username, firstName, lastName, gender, conn);
+                FamilyTreeGenerator ft = new FamilyTreeGenerator(generations, personID, username,
+                        firstName, lastName, gender, conn);
 
-            ft.generateFamilyTree();
+                ft.generateFamilyTree();
 
-            int numPersons = 1;
-            int numEvents = 1;
-            if (generations > 0) {
-                numPersons = pDao.getCountByUsername(username);
-                numEvents = numPersons * 3 - 2;
+                int numPersons = 1;
+                int numEvents = 1;
+                if (generations > 0) {
+                    numPersons = pDao.getCountByUsername(username);
+                    numEvents = numPersons * 3 - 2;
+                }
+
+                db.closeConnection(true);
+
+                FillResult result = new FillResult();
+
+                result.setMessage("Successfully added " + numPersons + " persons and " + numEvents + " events to the database.");
+                result.setSuccess(true);
+
+                return result;
             }
+            else {
+                db.closeConnection(false);
 
-            db.closeConnection(true);
+                FillResult result = new FillResult();
 
-            FillResult result = new FillResult();
+                result.setMessage("Error: User does not exist");
+                result.setSuccess(false);
 
-            result.setMessage("Successfully added " + numPersons + " persons and " + numEvents + " events to the database.");
-            result.setSuccess(true);
-
-            return result;
+                return result;
+            }
         }
         catch (DataAccessException e) {
             e.printStackTrace();
@@ -91,5 +103,4 @@ public class FillService {
             return result;
         }
     }
-
 }
